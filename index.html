@@ -43,6 +43,9 @@
   --white-line:rgba(21,18,19,.18);
   --white-soft:rgba(21,18,19,.06);
   --scrim:rgba(5,4,4,.74);
+  --glow:rgba(200,16,46,.26);
+  --veil:rgba(17,14,15,.78);
+  --blood-top:#dc1a3a;
   --belt-blanca:#ece7dd; --belt-gris:#8e8c8a; --belt-amarilla:#e3b92b; --belt-naranja:#e07b22;
   --belt-verde:#3c8b4b; --belt-azul:#2a5db0; --belt-morada:#6d41a3; --belt-cafe:#70452a;
   --belt-negra:#0a0909; --belt-tip:#0a0909; --belt-tip-negra:#c8102e; --stripe:#f6f1e8;
@@ -151,8 +154,8 @@ select.input{padding-right:8px}
 .stepper output.txt{font:600 14px/1.1 var(--f-label);letter-spacing:.04em}
 
 /* ---------- marcador ---------- */
-.board{display:grid;gap:10px;grid-template-areas:"r" "m" "w";max-width:1400px;margin:0 auto}
-@media (min-width:760px){.board{grid-template-columns:1fr 1fr;grid-template-areas:"m m" "r w"}}
+.board{display:grid;gap:10px;grid-template-columns:minmax(0,1fr) minmax(0,1fr);grid-template-areas:"m m" "r w" "f f";max-width:1400px;margin:0 auto}
+.mfoot{grid-area:f;display:flex;flex-direction:column;align-items:center;gap:6px;padding:4px 0}
 .side{grid-area:r;border-radius:16px;padding:14px;display:flex;flex-direction:column;gap:12px;position:relative;overflow:hidden;min-width:0}
 .side.red{background:linear-gradient(155deg,var(--red-a),var(--red-b));color:var(--bone);--sl:var(--red-line);--ss:var(--red-soft)}
 .side.white{grid-area:w;background:var(--white-side);color:var(--white-ink);--sl:var(--white-line);--ss:var(--white-soft)}
@@ -194,7 +197,7 @@ select.input{padding-right:8px}
 
 /* ---------- asistencia ---------- */
 .att{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
-.seg{display:grid;grid-template-columns:repeat(3,1fr);background:var(--slab);border:1px solid var(--line);border-radius:var(--r);padding:4px;gap:4px}
+.seg{display:grid;grid-template-columns:repeat(4,1fr);background:var(--slab);border:1px solid var(--line);border-radius:var(--r);padding:4px;gap:4px}
 .seg button{min-height:40px;border:0;background:transparent;border-radius:7px;font:700 14px/1 var(--f-label);letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
 .seg button[aria-selected="true"]{background:var(--slab-3);color:var(--bone)}
 .note{display:flex;gap:10px;align-items:flex-start;padding:12px 14px;border:1px dashed var(--line-2);background:var(--slab);border-radius:10px;color:var(--ash);font-size:14px}
@@ -402,6 +405,112 @@ body.tv-mode main{height:100%;overflow:hidden}
 .photo-btns{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
 .photo-btns .hint{flex-basis:100%}
 
+/* ---------- marcador en teléfono: reloj arriba, las dos esquinas lado a lado ---------- */
+@media (max-width:759px){
+  #v-marcador{padding-top:8px}
+  .mid{position:sticky;top:0;z-index:4;padding:8px 10px;gap:6px 10px;box-shadow:0 10px 24px rgba(0,0,0,.45)}
+  .mclock{font-size:clamp(54px,17vw,96px);padding:0 6px}
+  .mctrl{gap:5px}
+  .mctrl .btn{min-height:38px;padding:0 10px;font-size:13px}
+  .mctrl .btn svg{width:16px;height:16px}
+  .sel{min-height:38px;font-size:13px}
+  .mlog{font-size:12px}
+  .side{padding:10px;gap:8px;border-radius:14px}
+  .side-head{flex-direction:column;align-items:stretch;gap:2px}
+  .name{font-size:16px}
+  .score-row{flex-direction:column;align-items:stretch;gap:8px}
+  .pts{font-size:clamp(64px,22vw,120px);text-align:center;transform-origin:center bottom}
+  .vc{grid-template-columns:1fr 1fr;gap:6px}
+  .vc div{flex-direction:column-reverse;gap:4px;justify-content:center}
+  .vc span{font-size:10px;letter-spacing:.1em}
+  .vc b{min-width:0;width:100%;height:36px;font-size:24px}
+  .acts{gap:5px}
+  .act{min-height:52px;padding:4px 2px}
+  .act[data-act="pts"] small{display:none}
+  .act small{font-size:10px}
+}
+
+/* ---------- acabado: superficies, navegación y botones ---------- */
+body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 65%),var(--ink)}
+.top{background:var(--veil);backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.btn{border-radius:12px}
+.btn.primary{background:linear-gradient(180deg,var(--blood-top),var(--blood));box-shadow:0 6px 18px var(--glow),inset 0 1px 0 rgba(255,255,255,.18)}
+.input{border-radius:12px}
+.chip{border-radius:999px}
+.seg{border-radius:14px}
+.seg button{border-radius:10px}
+.seg button[aria-selected="true"]{background:var(--bone);color:var(--ink)}
+.tile,.kpi,.chart,.pay-sum,.day,.mid,.rank-row,.rw-how{background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012)),var(--slab);border-color:var(--line-2)}
+.list{border-radius:16px;border-color:var(--line-2);background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012)),var(--slab)}
+.row,.prow{background:transparent}
+.tile{border-radius:16px;min-height:104px}
+.tile .av{width:46px;height:46px;font-size:17px}
+.tile[aria-pressed="true"]{box-shadow:0 10px 26px var(--glow)}
+.kpi,.chart,.pay-sum{border-radius:16px}
+.sheet{border-radius:22px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,0) 160px),var(--slab)}
+.ci-count b{color:var(--bone);text-shadow:0 0 28px var(--glow)}
+@media (max-width:999px){
+  .tabbar{margin:0 max(10px,env(safe-area-inset-right,0px)) 8px max(10px,env(safe-area-inset-left,0px));padding:6px;border:1px solid var(--line-2);border-radius:20px;background:var(--veil);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);box-shadow:0 10px 30px rgba(0,0,0,.5)}
+  .tab{border-radius:14px}
+  .tab[aria-current="page"]{background:linear-gradient(160deg,var(--red-a),var(--red-b));color:var(--bone)}
+  .tab[aria-current="page"]::before{display:none}
+}
+
+/* ---------- perfil del alumno, cintas y recompensas ---------- */
+.pf-head{display:flex;align-items:center;gap:14px}
+.pf-av{position:relative;flex:none;width:88px;height:88px;display:block;cursor:pointer;border-radius:50%}
+.pf-av .cam{position:absolute;right:-2px;bottom:-2px;width:30px;height:30px;border-radius:50%;background:var(--blood);display:grid;place-items:center;border:2px solid var(--slab);color:var(--bone)}
+.pf-av .cam svg{width:16px;height:16px}
+.pf-head h2{overflow-wrap:anywhere}
+.pf-sub{font-size:13px;color:var(--ash);margin-top:4px}
+.pf-stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:6px}
+.pf-stats .kpi{padding:10px 6px;text-align:center}
+.pf-stats .kpi b{font-size:28px}
+.pf-stats .kpi span{font-size:10px;letter-spacing:.08em}
+.level{display:flex;flex-direction:column;gap:6px}
+.level .lab{display:flex;justify-content:space-between;gap:8px}
+.badges{display:flex;flex-wrap:wrap;gap:6px}
+.bdg{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;border:1px solid var(--gold);color:var(--gold);font:700 12px/1 var(--f-label);letter-spacing:.08em;text-transform:uppercase}
+.bdg.off{border-color:var(--line-2);color:var(--ash-2)}
+.bdg svg{width:12px;height:12px}
+.sec{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap;margin-top:6px;padding-top:14px;border-top:1px solid var(--line)}
+.sec h3{margin:0;font:800 20px/1 var(--f-display);text-transform:uppercase;letter-spacing:.01em}
+.belt-now{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font:700 16px/1.3 var(--f-label)}
+.belt-now small{font:500 13px/1.3 var(--f-body);color:var(--ash)}
+.tl{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
+.tl li{position:relative;padding:0 0 14px 22px}
+.tl li::before{content:"";position:absolute;left:4px;top:8px;bottom:-6px;width:2px;background:var(--line-2)}
+.tl li:last-child::before{display:none}
+.tl li::after{content:"";position:absolute;left:0;top:4px;width:10px;height:10px;border-radius:50%;background:var(--gold)}
+.tl .when{font:700 12px/1.2 var(--f-label);letter-spacing:.12em;text-transform:uppercase;color:var(--ash)}
+.tl .what{display:flex;align-items:center;gap:8px;flex-wrap:wrap;font:700 16px/1.3 var(--f-label);margin-top:3px}
+.tl .more{font-size:13px;color:var(--ash)}
+.linkbtn{border:0;background:none;color:var(--ash);font:600 12px/1 var(--f-label);letter-spacing:.04em;text-decoration:underline;text-underline-offset:3px;padding:6px 0}
+.rw-how{border:1px solid var(--line-2);border-radius:16px;padding:14px 16px;font:600 15px/1.4 var(--f-label);letter-spacing:.03em;color:var(--ash)}
+.rw-how b{font:900 26px/1 var(--f-display);color:var(--gold);margin-right:2px}
+.rank{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.rank-row{width:100%;display:grid;grid-template-columns:26px auto minmax(0,1fr) auto;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--line-2);border-radius:14px;color:var(--bone);text-align:left}
+.rank li:first-child .rank-row{border-color:var(--gold)}
+.rank .pos{font:800 20px/1 var(--f-display);color:var(--ash-2)}
+.rank li:first-child .pos{color:var(--gold)}
+.rank .who{min-width:0}
+.rank .who b{display:block;font:700 16px/1.2 var(--f-label);overflow-wrap:anywhere}
+.rank .who span{font-size:13px;color:var(--ash)}
+.rank .c{font:800 24px/1 var(--f-display);text-align:right}
+.rank .c small{display:block;font:600 10px/1.4 var(--f-label);letter-spacing:.14em;color:var(--ash)}
+.pz{display:grid;grid-template-columns:minmax(0,1fr) auto auto;gap:10px;align-items:center;padding:12px 14px;border-bottom:1px solid var(--line)}
+.pz:last-child{border-bottom:0}
+.pz b{font:700 16px/1.2 var(--f-label);overflow-wrap:anywhere}
+.pz .cost{font:800 20px/1 var(--f-display);color:var(--gold);white-space:nowrap}
+.pz-form{display:grid;grid-template-columns:minmax(0,1fr) 96px auto;gap:8px}
+.toast{width:max-content;max-width:calc(100% - 32px)}
+.tile-top{flex-direction:column;align-items:flex-start;gap:8px;padding-right:0}
+.tile.has-due .tile-top{padding-right:0}
+.tile .nm{overflow-wrap:break-word;word-break:normal}
+@media (max-width:759px){#v-marcador{padding-bottom:10px}}
+@media (max-width:520px){.pz-form{grid-template-columns:minmax(0,1fr) auto}#pzName{grid-column:1/-1}}
+@media (max-width:420px){.seg button{font-size:12px;letter-spacing:.05em}.pf-av,.pf-av .av.lg{width:72px;height:72px}}
+
 /* ---------- computadora: navegación lateral ---------- */
 @media (min-width:1000px){
   .app{display:grid;grid-template-columns:112px minmax(0,1fr);grid-template-rows:auto minmax(0,1fr);grid-template-areas:"top top" "nav main"}
@@ -518,10 +627,8 @@ body.tv-mode main{height:100%;overflow:hidden}
             <button class="btn" id="mEnd">Terminar</button>
             <button class="btn ghost" id="mNew" title="Nueva lucha">Nueva</button>
           </div>
-          <label class="toggle" title="2º castigo da ventaja al rival y 3º castigo da 2 puntos al rival"><input type="checkbox" id="mLadder"> Castigos suman al rival (2º ventaja · 3º +2)</label>
           <div class="result" id="mResult" hidden></div>
           <div class="mlog" id="mLog" aria-live="polite"></div>
-          <div class="kbd">Rojo <kbd>Q</kbd><kbd>W</kbd><kbd>E</kbd> +2 +3 +4 · <kbd>A</kbd> ventaja · <kbd>S</kbd> castigo &nbsp;|&nbsp; Blanco <kbd>U</kbd><kbd>I</kbd><kbd>O</kbd> +2 +3 +4 · <kbd>J</kbd> ventaja · <kbd>K</kbd> castigo &nbsp;|&nbsp; <kbd>Espacio</kbd> reloj · <kbd>Z</kbd> deshacer</div>
         </div>
 
         <div class="side white" id="sideW" data-side="w">
@@ -539,6 +646,10 @@ body.tv-mode main{height:100%;overflow:hidden}
             <button class="act" data-side="w" data-act="sub"><b>F</b><small>Finalizó</small></button>
           </div>
         </div>
+        <div class="mfoot">
+          <label class="toggle" title="2º castigo da ventaja al rival y 3º castigo da 2 puntos al rival"><input type="checkbox" id="mLadder"> Castigos suman al rival (2º ventaja · 3º +2)</label>
+          <div class="kbd">Rojo <kbd>Q</kbd><kbd>W</kbd><kbd>E</kbd> +2 +3 +4 · <kbd>A</kbd> ventaja · <kbd>S</kbd> castigo &nbsp;|&nbsp; Blanco <kbd>U</kbd><kbd>I</kbd><kbd>O</kbd> +2 +3 +4 · <kbd>J</kbd> ventaja · <kbd>K</kbd> castigo &nbsp;|&nbsp; <kbd>Espacio</kbd> reloj · <kbd>Z</kbd> deshacer</div>
+        </div>
       </div>
     </section>
 
@@ -548,6 +659,7 @@ body.tv-mode main{height:100%;overflow:hidden}
         <div class="seg" role="tablist" aria-label="Secciones de asistencia">
           <button role="tab" data-pane="checkin" aria-selected="true">Check-in</button>
           <button role="tab" data-pane="alumnos" aria-selected="false">Alumnos</button>
+          <button role="tab" data-pane="premios" aria-selected="false">Premios</button>
           <button role="tab" data-pane="historial" aria-selected="false">Historial</button>
         </div>
         <div class="note" id="aNote" hidden></div>
@@ -580,7 +692,22 @@ body.tv-mode main{height:100%;overflow:hidden}
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>Agregar alumno
             </button>
           </div>
+          <div class="ci-tools">
+            <label class="sr" for="alSearch">Buscar en la lista de alumnos</label>
+            <input type="search" class="input" id="alSearch" placeholder="Buscar alumno" autocomplete="off">
+          </div>
           <div id="alList"></div>
+        </div>
+
+        <div class="pane" id="p-premios" hidden>
+          <div id="rwBody" class="pane"></div>
+          <form class="pz-form" id="pzForm" novalidate>
+            <label class="sr" for="pzName">Nombre del premio</label>
+            <input class="input" id="pzName" maxlength="40" placeholder="Premio nuevo, ej. playera 99" autocomplete="off">
+            <label class="sr" for="pzCost">Puntos que cuesta</label>
+            <input class="input" id="pzCost" type="number" inputmode="numeric" min="10" step="10" placeholder="Puntos">
+            <button class="btn primary" type="submit">Agregar</button>
+          </form>
         </div>
 
         <div class="pane" id="p-historial" hidden>
@@ -679,6 +806,7 @@ body.tv-mode main{height:100%;overflow:hidden}
   </nav>
 </div>
 
+<input type="file" id="pfFile" accept="image/*" class="sr" tabindex="-1" aria-label="Foto de perfil">
 <div class="scrim" id="scrim" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button id="toastBtn" hidden>Deshacer</button></div>
 
@@ -1398,7 +1526,7 @@ function setPresence(sid, on, silent, date, cls) {
   });
   if (!silent) {
     const s = A.students.get(sid), nm = s ? s.name.split(' ')[0] : 'Alumno';
-    if (on) toast('Oss, ' + nm + ' · ' + className(cls), 'Deshacer', () => setPresence(sid, false, true, date, cls));
+    if (on) toast('Oss, ' + nm + ' · ' + className(cls) + checkinMsg(sid, date), 'Deshacer', () => setPresence(sid, false, true, date, cls));
     else toast(nm + ' ya no aparece presente', 'Deshacer', () => setPresence(sid, true, true, date, cls));
   }
 }
@@ -1448,11 +1576,14 @@ function studentForm(id, preset) {
       '<button type="button" class="btn small ghost" id="stPhotoDel"' + (safePhoto(d.photo) ? '' : ' hidden') + '>Quitar</button>' +
       '<span class="hint" id="stPhotoInfo">Se guarda recortada y comprimida, pesa unos 5 KB</span></div></div>' +
     '<div class="field"><label for="stName">Nombre completo</label><input id="stName" class="input" autocomplete="off" maxlength="60" value="' + esc(d.name) + '" autofocus></div>' +
+    (s ? '<div class="field"><label for="stGroup">Grupo</label><select id="stGroup" class="input">' + opt(GROUPS, d.group) + '</select></div>' +
+      '<p class="hint">La cinta se cambia desde el perfil del alumno, en “Registrar cambio de cinta”, para que quede en su historial.</p>' : (
     '<div class="two"><div class="field"><label for="stGroup">Grupo</label><select id="stGroup" class="input">' + opt(GROUPS, d.group) + '</select></div>' +
     '<div class="field"><label for="stBelt">Cinta</label><select id="stBelt" class="input">' + opt(BELTS, d.belt) + '</select></div></div>' +
     '<div class="field"><span class="lab">Grados en la cinta</span><div class="grades" role="radiogroup" aria-label="Grados">' +
       [0, 1, 2, 3, 4].map(n => '<button type="button" role="radio" data-g="' + n + '" aria-checked="' + ((d.stripes | 0) === n) + '">' + n + '</button>').join('') + '</div>' +
-      '<div class="belt-prev" id="stPrev"></div></div>' +
+      '<div class="belt-prev" id="stPrev"></div></div>'
+    )) +
     '<div class="field"><label for="stPhone">Teléfono o WhatsApp (opcional)</label><input id="stPhone" class="input" inputmode="tel" autocomplete="off" maxlength="30" value="' + esc(d.phone || '') + '"></div>' +
     '<div class="field"><label for="stFee">Mensualidad (MXN)</label><input id="stFee" class="input" type="number" inputmode="numeric" min="0" step="50" placeholder="' + P.fee + '" value="' + (typeof d.fee === 'number' ? d.fee : '') + '"><span class="hint">Vacío = cuota general de ' + money(P.fee) + '. Pon 0 si está becado. Los profes no pagan.</span></div>' +
     '<label class="check"><input type="checkbox" id="stActive"' + (d.active !== false ? ' checked' : '') + '> Alumno activo (aparece en el check-in)</label>' +
@@ -1484,10 +1615,11 @@ function studentForm(id, preset) {
       });
       $('#stPhotoDel', sh).addEventListener('click', () => { photo = null; $('#stPhotoInfo', sh).textContent = 'Sin foto'; paintPhoto(); });
       $('#stName', sh).addEventListener('input', () => { if (!photo) paintPhoto(); });
-      const prev = () => { $('#stPrev', sh).innerHTML = beltHTML({ belt: $('#stBelt', sh).value, stripes }) + '<span class="lab">' + esc(beltName($('#stBelt', sh).value)) + (stripes ? ' · ' + stripes + (stripes === 1 ? ' grado' : ' grados') : '') + '</span>'; };
+      const beltEl = $('#stBelt', sh);
+      const prev = () => { if (!beltEl) return; $('#stPrev', sh).innerHTML = beltHTML({ belt: $('#stBelt', sh).value, stripes }) + '<span class="lab">' + esc(beltName($('#stBelt', sh).value)) + (stripes ? ' · ' + stripes + (stripes === 1 ? ' grado' : ' grados') : '') + '</span>'; };
       prev();
-      $('#stBelt', sh).addEventListener('change', prev);
-      $('.grades', sh).addEventListener('click', e => {
+      if (beltEl) beltEl.addEventListener('change', prev);
+      ($('.grades', sh) || document.createElement('div')).addEventListener('click', e => {
         const b = e.target.closest('[data-g]'); if (!b) return;
         stripes = +b.dataset.g;
         $$('.grades button', sh).forEach(x => x.setAttribute('aria-checked', String(x === b)));
@@ -1500,7 +1632,7 @@ function studentForm(id, preset) {
         if (!name) { const er = $('#stErr', sh); er.hidden = false; er.textContent = 'Escribe el nombre del alumno.'; $('#stName', sh).focus(); return; }
         const fv = $('#stFee', sh).value.trim();
         const fee = fv === '' ? null : Math.max(0, Math.round(Number(fv)) || 0);
-        const data = { name, group: $('#stGroup', sh).value, belt: $('#stBelt', sh).value, stripes, phone: $('#stPhone', sh).value.trim(), active: $('#stActive', sh).checked, fee, photo };
+        const data = { name, group: $('#stGroup', sh).value, belt: beltEl ? beltEl.value : s.belt, stripes, phone: $('#stPhone', sh).value.trim(), active: $('#stActive', sh).checked, fee, photo };
         const now = !!($('#stNow', sh) && $('#stNow', sh).checked && data.active);
         $('#stSave', sh).disabled = true;
         const ok = await saveStudent(id, data, now);
@@ -1510,7 +1642,7 @@ function studentForm(id, preset) {
       if (s) $('#stDel', sh).addEventListener('click', async () => {
         const nm = s.name;
         const ok = await confirmSheet('¿Eliminar a ' + nm + '?', 'Se quita de la lista de alumnos. Sus asistencias pasadas siguen contando en el historial. Si solo dejó de venir, mejor márcalo como inactivo.', 'Eliminar', true);
-        if (ok) deleteStudent(id); else studentForm(id);
+        if (ok) deleteStudent(id); else openProfile(id);
       });
     }
   );
@@ -1593,25 +1725,28 @@ function renderAlumnos() {
     return;
   }
   let html = '';
+  const aq = fold(A.aq || '');
   GROUPS.forEach(g => {
-    const list = all.filter(s => s.group === g.id).sort((a, b) => (a.active === false) - (b.active === false) || a.name.localeCompare(b.name, 'es'));
+    const list = all.filter(s => s.group === g.id && (!aq || fold(s.name).includes(aq))).sort((a, b) => (a.active === false) - (b.active === false) || a.name.localeCompare(b.name, 'es'));
     if (!list.length) return;
     html += '<div class="group-title">' + esc(g.name) + ' · ' + list.length + '</div><div class="list">' + list.map(s => {
       const st = statsFor(s.id);
       const curM = todayStr().slice(0, 7);
       const payTxt = P.loaded && payEligible(s) && s.active !== false ? (isPaid(curM, s.id) ? ' · ' + monthName(curM) + ' pagado' : ' · debe ' + monthName(curM)) : '';
-      return '<button class="row' + (s.active === false ? ' inactive' : '') + '" data-edit="' + esc(s.id) + '">' + avatarHTML(s) +
+      return '<button class="row' + (s.active === false ? ' inactive' : '') + '" data-prof="' + esc(s.id) + '">' + avatarHTML(s) +
         '<span class="who"><b>' + esc(s.name) + '</b><span class="line">' + beltHTML(s) + '<span>' + (s.belt === 'ninguna' ? 'Striking' : 'Cinta ' + esc(beltName(s.belt).toLowerCase()) + (s.stripes ? ' · ' + s.stripes + (s.stripes === 1 ? ' grado' : ' grados') : '')) +
         (s.active === false ? ' · inactivo' : '') + (st.last ? ' · última: ' + esc(dayLabel(st.last)) : ' · sin asistencias') + esc(payTxt) + '</span></span></span>' +
         '<span class="stat"><b class="num">' + st.n30 + '</b>clases 30 d</span></button>';
     }).join('') + '</div>';
   });
-  $('#alList').innerHTML = html;
+  $('#alList').innerHTML = html || '<div class="empty"><p>Nadie en la lista coincide con “' + esc(A.aq) + '”.</p></div>';
 }
 $('#alList').addEventListener('click', e => {
   if (e.target.closest('[data-add]')) { studentForm(null); return; }
-  const r = e.target.closest('[data-edit]'); if (r) studentForm(r.dataset.edit);
+  const r = e.target.closest('[data-prof]'); if (r) openProfile(r.dataset.prof);
 });
+let aqTimer = 0;
+$('#alSearch').addEventListener('input', e => { clearTimeout(aqTimer); aqTimer = setTimeout(() => { A.aq = e.target.value; renderAlumnos(); }, 120); });
 $('#alAdd').addEventListener('click', () => studentForm(null));
 
 /* --- render: historial --- */
@@ -1705,10 +1840,306 @@ $('#hPrev').addEventListener('click', () => { const [y, m] = A.month.split('-').
 $('#hNext').addEventListener('click', () => { const [y, m] = A.month.split('-').map(Number); const d = new Date(y, m, 1); A.month = d.getFullYear() + '-' + pad(d.getMonth() + 1); renderHistorial(); });
 
 /* --- pestañas internas --- */
+/* ================= RECOMPENSAS, PERFIL Y CINTAS ================= */
+const PTS_CLASS = 10, PTS_WEEK = 20, WEEK_MIN = 3, LEVEL_SIZE = 250;
+const BADGES = [[1, 'Primera clase'], [10, '10 clases'], [25, '25 clases'], [50, '50 clases'], [100, '100 clases'], [200, '200 clases']];
+const STREAK_BADGES = [[4, 'Racha de 4 semanas'], [12, 'Racha de 12 semanas'], [26, 'Racha de 26 semanas']];
+const R_ = { prizes: {}, canjes: new Map(), scope: 'mes', idx: null, idxFor: null };
+const STAR_SVG = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.5l2.9 6.2 6.6.8-4.9 4.6 1.3 6.6L12 17.4l-5.9 3.3 1.3-6.6-4.9-4.6 6.6-.8z"/></svg>';
+const CAM_SVG = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l1.5-2.5h7L17 8h3v11H4z"/><circle cx="12" cy="13" r="3.4"/></svg>';
+function weekStart(ds) { const d = parseDay(ds); d.setDate(d.getDate() - ((d.getDay() + 6) % 7)); return todayStr(d); }
+function addDays(ds, n) { const d = parseDay(ds); d.setDate(d.getDate() + n); return todayStr(d); }
+function rewardIndex() {
+  if (R_.idxFor === A.days) return R_.idx;
+  const idx = new Map();
+  A.days.forEach((d, date) => {
+    const en = d.entries || {};
+    Object.keys(en).forEach(c => Object.keys(en[c] || {}).forEach(sid => {
+      if (!en[c][sid] || !en[c][sid].on) return;
+      let r = idx.get(sid); if (!r) { r = { dates: [], weeks: new Map() }; idx.set(sid, r); }
+      r.dates.push(date);
+      const w = weekStart(date); r.weeks.set(w, (r.weeks.get(w) || 0) + 1);
+    }));
+  });
+  R_.idx = idx; R_.idxFor = A.days;
+  return idx;
+}
+function canjesOf(sid) {
+  const d = R_.canjes.get(sid), it = (d && d.items) || {};
+  return Object.keys(it).filter(k => it[k] && it[k].on !== false).map(k => Object.assign({ id: k }, it[k])).sort((a, b) => (String(a.at) < String(b.at) ? 1 : -1));
+}
+function rewardsFor(sid) {
+  const r = rewardIndex().get(sid) || { dates: [], weeks: new Map() };
+  const classes = r.dates.length;
+  let full = 0; r.weeks.forEach(n => { if (n >= WEEK_MIN) full++; });
+  const earned = classes * PTS_CLASS + full * PTS_WEEK;
+  let w = weekStart(todayStr()); if (!r.weeks.has(w)) w = addDays(w, -7);
+  let streak = 0; while (r.weeks.has(w)) { streak++; w = addDays(w, -7); }
+  let best = 0, run = 0, prev = '';
+  Array.from(r.weeks.keys()).sort().forEach(k => { run = (prev && addDays(prev, 7) === k) ? run + 1 : 1; if (run > best) best = run; prev = k; });
+  const spent = canjesOf(sid).reduce((a, x) => a + (Number(x.cost) || 0), 0);
+  return { classes, full, earned, spent, balance: earned - spent, streak, best, level: Math.floor(earned / LEVEL_SIZE) + 1, into: earned % LEVEL_SIZE, dates: r.dates, weeks: r.weeks };
+}
+function monthPoints(sid, ym) {
+  const r = rewardIndex().get(sid); if (!r) return 0;
+  let p = r.dates.filter(d => d.slice(0, 7) === ym).length * PTS_CLASS;
+  r.weeks.forEach((n, w) => { if (n >= WEEK_MIN && w.slice(0, 7) === ym) p += PTS_WEEK; });
+  return p;
+}
+function checkinMsg(sid, date) {
+  const s = A.students.get(sid); if (!s || s.group === 'profes') return '';
+  const r = rewardsFor(sid), n = r.classes + 1, wk = (r.weeks.get(weekStart(date)) || 0) + 1;
+  let pts = PTS_CLASS, extra = '';
+  if (wk === WEEK_MIN) { pts += PTS_WEEK; extra = ' · semana completa'; }
+  const b = BADGES.find(x => x[0] === n); if (b) extra = ' · insignia: ' + b[1].toLowerCase();
+  return ' · +' + pts + ' pts' + extra;
+}
+function prizeList() {
+  return Object.keys(R_.prizes).filter(k => R_.prizes[k] && R_.prizes[k].on !== false).map(k => Object.assign({ id: k }, R_.prizes[k])).sort((a, b) => a.cost - b.cost);
+}
+const rid = () => Date.now().toString(36) + Math.random().toString(36).slice(2, 6);
+const beltText = s => s.belt === 'ninguna' ? 'Sin cinta (striking)' : 'Cinta ' + beltName(s.belt || 'blanca').toLowerCase() + (s.stripes ? ' · ' + s.stripes + (s.stripes === 1 ? ' grado' : ' grados') : '');
+const plural = (n, one, many) => n + ' ' + (n === 1 ? one : many);
+function upsert(path, patch) {
+  const ref = A.db.doc(path);
+  return enqueue(path, async () => {
+    try { await ref.update(patch); }
+    catch (e) { if (e && e.code === 'invalid_argument') await ref.set(patch); else throw e; }
+  });
+}
+function promosOf(s) {
+  const pr = s.promos || {};
+  return Object.keys(pr).filter(k => pr[k] && !pr[k].del).map(k => Object.assign({ id: k }, pr[k]))
+    .sort((a, b) => (a.date === b.date ? (String(a.at) < String(b.at) ? 1 : -1) : (a.date < b.date ? 1 : -1)));
+}
+
+/* --- panel de premios y ranking --- */
+function renderPremios() {
+  const ym = todayStr().slice(0, 7);
+  const rows = Array.from(A.students.values()).filter(s => s.group !== 'profes' && s.active !== false)
+    .map(s => { const r = rewardsFor(s.id); return { s, r, p: R_.scope === 'mes' ? monthPoints(s.id, ym) : r.earned }; })
+    .filter(x => x.p > 0).sort((a, b) => b.p - a.p || a.s.name.localeCompare(b.s.name, 'es')).slice(0, 10);
+  let html = '<div class="rw-how"><b>' + PTS_CLASS + '</b> puntos por cada check-in y <b>+' + PTS_WEEK + '</b> extra por cada semana con ' + WEEK_MIN + ' clases o más. Los puntos se canjean por premios desde el perfil del alumno.</div>';
+  html += '<div class="list-head"><h3 class="h3">Ranking</h3><div class="chips">' +
+    '<button class="chip sm" data-scope="mes" aria-pressed="' + (R_.scope === 'mes') + '">' + esc(monthName(ym)) + '</button>' +
+    '<button class="chip sm" data-scope="todo" aria-pressed="' + (R_.scope === 'todo') + '">Histórico</button></div></div>';
+  html += rows.length
+    ? '<ol class="rank">' + rows.map((x, i) => '<li><button class="rank-row" data-prof="' + esc(x.s.id) + '"><span class="pos">' + (i + 1) + '</span>' + avatarHTML(x.s) +
+        '<span class="who"><b>' + esc(x.s.name) + '</b><span>' + plural(x.r.classes, 'clase', 'clases') + (x.r.streak > 1 ? ' · racha de ' + x.r.streak + ' semanas' : '') + '</span></span>' +
+        '<span class="c num">' + x.p + '<small>PUNTOS</small></span></button></li>').join('') + '</ol>'
+    : '<div class="empty"><h3>Ranking de puntos</h3><p>Aquí aparecen los alumnos con más puntos. Cada check-in suma ' + PTS_CLASS + ' puntos' + (R_.scope === 'mes' ? '; este mes todavía nadie tiene' : '') + '.</p></div>';
+  const pz = prizeList();
+  html += '<div class="list-head"><h3 class="h3">Premios<small>' + pz.length + '</small></h3></div>';
+  html += pz.length
+    ? '<div class="list">' + pz.map(x => '<div class="pz"><b>' + esc(x.name) + '</b><span class="cost num">' + x.cost + ' pts</span>' +
+        (A.ro ? '<span></span>' : '<button class="linkbtn" data-pzdel="' + esc(x.id) + '">Quitar</button>') + '</div>').join('') + '</div>'
+    : '<div class="empty"><p>Todavía no hay premios. Agrega abajo lo que quieras dar por puntos: una playera, un mes con descuento, una clase privada.</p></div>';
+  $('#rwBody').innerHTML = html;
+  $('#pzForm').hidden = A.ro || !A.db;
+}
+$('#rwBody').addEventListener('click', e => {
+  const sc = e.target.closest('[data-scope]'); if (sc) { R_.scope = sc.dataset.scope; renderPremios(); return; }
+  const pr = e.target.closest('[data-prof]'); if (pr) { openProfile(pr.dataset.prof); return; }
+  const del = e.target.closest('[data-pzdel]');
+  if (del && canWrite()) {
+    if (del.dataset.sure !== '1') { del.dataset.sure = '1'; del.textContent = '¿Seguro?'; return; }
+    upsert('config/premios', { items: { [del.dataset.pzdel]: { on: false } } }).then(() => toast('Premio quitado')).catch(writeError);
+  }
+});
+$('#pzForm').addEventListener('submit', e => {
+  e.preventDefault();
+  const name = $('#pzName').value.trim(), cost = Math.round(Number($('#pzCost').value));
+  if (!name) { toast('Escribe el nombre del premio'); $('#pzName').focus(); return; }
+  if (!(cost > 0)) { toast('Escribe cuántos puntos cuesta'); $('#pzCost').focus(); return; }
+  if (!canWrite()) return;
+  upsert('config/premios', { items: { [rid()]: { name, cost, on: true } } })
+    .then(() => { $('#pzName').value = ''; $('#pzCost').value = ''; toast('Premio agregado · ' + name); }).catch(writeError);
+});
+
+/* --- perfil del alumno --- */
+let profId = null, profSig = '', pfTarget = null;
+function profSignature(sid) {
+  const s = A.students.get(sid); if (!s) return 'x';
+  const r = rewardsFor(sid);
+  return JSON.stringify([s, r.classes, r.streak, canjesOf(sid).length, A.ro, isPaid(todayStr().slice(0, 7), sid)]);
+}
+function profRefresh() {
+  if (!profId || $('#scrim').hidden) return;
+  if (profSignature(profId) !== profSig) openProfile(profId, true);
+}
+function openProfile(sid, keepScroll) {
+  const s = A.students.get(sid);
+  if (!s) { profId = null; closeSheet(); return; }
+  const top = keepScroll ? $('#sheet').scrollTop : 0;
+  const r = rewardsFor(sid), st = statsFor(sid), staff = s.group === 'profes', promos = promosOf(s);
+  const since = promos.length ? promos[0].date : '';
+  const sinceN = since ? r.dates.filter(d => d >= since).length : r.classes;
+  const curM = todayStr().slice(0, 7);
+  const hasPhoto = !!safePhoto(s.photo), cj = canjesOf(sid);
+  const earnedBadges = BADGES.map(b => ({ t: b[1], on: r.classes >= b[0] })).concat(STREAK_BADGES.map(b => ({ t: b[1], on: r.best >= b[0] })));
+  const nextBadge = BADGES.find(b => r.classes < b[0]);
+  let html = '<div class="pf-head"><label class="pf-av" for="pfFile" title="' + (hasPhoto ? 'Cambiar foto' : 'Agregar foto') + '">' + avatarHTML(s, 'lg') + (A.ro ? '' : '<span class="cam">' + CAM_SVG + '</span>') + '</label>' +
+    '<div style="min-width:0"><h2>' + esc(s.name) + '</h2><div class="line">' + beltHTML(s) + '<span class="pf-sub" style="margin:0">' + esc(beltText(s)) + '</span></div>' +
+    '<div class="pf-sub">' + esc(groupName(s.group)) + (s.active === false ? ' · inactivo' : '') + (s.phone ? ' · ' + esc(s.phone) : '') +
+    (P.loaded && payEligible(s) && s.active !== false ? ' · ' + (isPaid(curM, sid) ? esc(monthName(curM)) + ' pagado' : 'debe ' + esc(monthName(curM))) : '') + '</div></div></div>';
+  if (!A.ro) html += '<div class="photo-btns"><label for="pfFile" class="btn small">' + (hasPhoto ? 'Cambiar foto' : 'Agregar foto') + '</label>' +
+    (hasPhoto ? '<button class="btn small ghost" data-pf="nophoto">Quitar foto</button>' : '') + '<button class="btn small ghost" data-pf="edit">Editar datos</button></div>';
+  html += '<div class="pf-stats"><div class="kpi"><b class="num">' + r.classes + '</b><span>Clases</span></div><div class="kpi"><b class="num">' + st.n30 + '</b><span>En 30 días</span></div>' +
+    '<div class="kpi"><b class="num">' + r.streak + '</b><span>Racha (sem.)</span></div>' +
+    (staff ? '<div class="kpi"><b class="num">' + r.best + '</b><span>Mejor racha</span></div>' : '<div class="kpi"><b class="num">' + r.balance + '</b><span>Puntos</span></div>') + '</div>';
+  html += '<div class="pf-sub" style="margin:0">' + (st.last ? 'Última clase: ' + esc(dayLabel(st.last, { weekday: 'long', day: 'numeric', month: 'long' })) : 'Todavía sin asistencias registradas') + '</div>';
+  if (!staff) {
+    html += '<div class="level"><div class="lab"><span>Nivel ' + r.level + '</span><span>' + r.into + ' / ' + LEVEL_SIZE + ' para nivel ' + (r.level + 1) + '</span></div>' +
+      '<div class="progress" role="progressbar" aria-label="Avance al siguiente nivel" aria-valuemin="0" aria-valuemax="' + LEVEL_SIZE + '" aria-valuenow="' + r.into + '"><i style="width:' + Math.round(r.into / LEVEL_SIZE * 100) + '%"></i></div></div>';
+    html += '<div class="badges">' + earnedBadges.filter(b => b.on).map(b => '<span class="bdg">' + STAR_SVG + esc(b.t) + '</span>').join('') +
+      (nextBadge ? '<span class="bdg off">Siguiente: ' + esc(nextBadge[1].toLowerCase()) + ' (faltan ' + (nextBadge[0] - r.classes) + ')</span>' : '') + '</div>';
+  }
+  // cinta e historial
+  html += '<div class="sec"><h3>Cinta</h3>' + (A.ro ? '' : '<button class="btn small primary" data-pf="promo">Registrar cambio de cinta</button>') + '</div>';
+  html += '<div class="belt-now">' + beltHTML(s) + '<span>' + esc(beltText(s)) + '</span><small>' +
+    (since ? 'desde ' + esc(dayLabel(since, { day: 'numeric', month: 'short', year: 'numeric' })) + ' · ' : '') + plural(sinceN, 'clase', 'clases') + (since ? ' desde el último cambio' : ' registradas') + '</small></div>';
+  html += promos.length
+    ? '<ol class="tl">' + promos.map((p, i) => {
+        const older = promos[i + 1], between = r.dates.filter(d => d < p.date && (!older || d >= older.date)).length;
+        return '<li><div class="when">' + esc(dayLabel(p.date, { day: 'numeric', month: 'long', year: 'numeric' })) + '</div>' +
+          '<div class="what">' + beltHTML(p) + '<span>' + esc(beltText(p)) + '</span></div>' +
+          '<div class="more">' + (p.from ? 'Antes: ' + esc(beltText(p.from).toLowerCase()) + ' · ' : '') + plural(between, 'clase', 'clases') + ' antes de este cambio' +
+          (p.by ? ' · otorgada por ' + esc(p.by) : '') + (p.note ? '<br>' + esc(p.note) : '') + '</div>' +
+          (A.ro ? '' : '<button class="linkbtn" data-promodel="' + esc(p.id) + '">Quitar del historial</button>') + '</li>';
+      }).join('') + '</ol>'
+    : '<div class="pf-sub" style="margin:0">Sin cambios de cinta registrados. Cada cambio queda aquí con su fecha, quién la otorgó y cuántas clases llevaba.</div>';
+  // premios
+  if (!staff) {
+    html += '<div class="sec"><h3>Premios</h3>' + (A.ro ? '' : '<button class="btn small" data-pf="canje">Canjear puntos</button>') + '</div>';
+    html += '<div class="pf-sub" style="margin:0">' + r.earned + ' puntos ganados · ' + r.spent + ' canjeados · <strong style="color:var(--gold)">' + r.balance + ' disponibles</strong></div>';
+    if (cj.length) html += '<div class="list">' + cj.map(x => '<div class="pz"><b>' + esc(x.name) + '</b><span class="cost num">−' + (Number(x.cost) || 0) + '</span>' +
+      '<span class="pf-sub" style="margin:0">' + (x.date ? esc(dayLabel(x.date, { day: 'numeric', month: 'short' })) : '') + (A.ro ? '' : ' · <button class="linkbtn" data-canjedel="' + esc(x.id) + '">Anular</button>') + '</span></div>').join('') + '</div>';
+  }
+  html += '<div class="sheet-actions"><button class="btn primary" data-pf="close">Listo</button></div>';
+  profId = sid; pfTarget = sid; profSig = profSignature(sid);
+  if (keepScroll) { $('#sheet').innerHTML = html; $('#sheet').scrollTop = top; }
+  else openSheet(html, null, () => { profId = null; });
+}
+$('#sheet').addEventListener('click', e => {
+  if (!profId) return;
+  const sid = profId, s = A.students.get(sid); if (!s) return;
+  const b = e.target.closest('[data-pf]');
+  if (b) {
+    const a = b.dataset.pf;
+    if (a === 'close') closeSheet();
+    else if (a === 'edit') { profId = null; studentForm(sid); }
+    else if (a === 'promo') { if (canWrite()) promoForm(sid); }
+    else if (a === 'canje') { if (canWrite()) canjeSheet(sid); }
+    else if (a === 'nophoto') { if (canWrite()) enqueue('students/' + sid, () => A.db.doc('students/' + sid).update({ photo: null })).then(() => toast('Foto quitada')).catch(writeError); }
+    return;
+  }
+  const pd = e.target.closest('[data-promodel]');
+  if (pd && canWrite()) {
+    if (pd.dataset.sure !== '1') { pd.dataset.sure = '1'; pd.textContent = '¿Seguro? Toca otra vez'; return; }
+    const promos = promosOf(s), p = promos.find(x => x.id === pd.dataset.promodel); if (!p) return;
+    const patch = { promos: { [p.id]: { del: true } } };
+    if (promos[0].id === p.id && p.from) { patch.belt = p.from.belt; patch.stripes = p.from.stripes | 0; }
+    enqueue('students/' + sid, () => A.db.doc('students/' + sid).update(patch)).then(() => toast('Cambio quitado del historial')).catch(writeError);
+    return;
+  }
+  const cd = e.target.closest('[data-canjedel]');
+  if (cd && canWrite()) {
+    if (cd.dataset.sure !== '1') { cd.dataset.sure = '1'; cd.textContent = '¿Seguro?'; return; }
+    upsert('canjes/' + sid, { items: { [cd.dataset.canjedel]: { on: false } } }).then(() => toast('Canje anulado, puntos devueltos')).catch(writeError);
+  }
+});
+$('#pfFile').addEventListener('change', async e => {
+  const f = e.target.files && e.target.files[0], sid = pfTarget;
+  e.target.value = '';
+  if (!f || !sid || !canWrite()) return;
+  let photo;
+  try { photo = await compressPhoto(f); } catch (err) { toast('No se pudo leer esa foto. Prueba con otra en JPG o PNG.'); return; }
+  enqueue('students/' + sid, () => A.db.doc('students/' + sid).update({ photo }))
+    .then(() => toast('Foto guardada · ' + Math.max(1, Math.round(photo.length * 0.75 / 1024)) + ' KB')).catch(writeError);
+});
+
+/* --- registrar cambio de cinta --- */
+function promoForm(sid) {
+  const s = A.students.get(sid); if (!s) return;
+  profId = null;
+  const profes = Array.from(A.students.values()).filter(x => x.group === 'profes' && x.active !== false).map(x => x.name).sort((a, b) => a.localeCompare(b, 'es'));
+  const lastBy = LS.get('promoBy', '');
+  let stripes = Math.min(4, (s.stripes | 0) + 1);
+  const curBelt = s.belt && s.belt !== 'ninguna' ? s.belt : 'blanca';
+  const opt = BELTS.filter(b => b.id !== 'ninguna').map(b => '<option value="' + b.id + '"' + (b.id === curBelt ? ' selected' : '') + '>' + esc(b.name) + '</option>').join('');
+  openSheet(
+    '<form id="prForm" novalidate style="display:contents"><h2>Cambio de cinta</h2>' +
+    '<p><strong>' + esc(s.name) + '</strong> · ahora: ' + esc(beltText(s).toLowerCase()) + '</p>' +
+    '<div class="two"><div class="field"><label for="prBelt">Nueva cinta</label><select id="prBelt" class="input">' + opt + '</select></div>' +
+    '<div class="field"><label for="prDate">Fecha</label><input id="prDate" class="input" type="date" value="' + todayStr() + '" max="' + todayStr() + '"></div></div>' +
+    '<div class="field"><span class="lab">Grados</span><div class="grades" role="radiogroup" aria-label="Grados">' +
+      [0, 1, 2, 3, 4].map(n => '<button type="button" role="radio" data-g="' + n + '" aria-checked="' + (stripes === n) + '">' + n + '</button>').join('') + '</div><div class="belt-prev" id="prPrev"></div></div>' +
+    '<div class="field"><label for="prBy">Otorgada por</label><select id="prBy" class="input"><option value="">Sin especificar</option>' +
+      profes.map(n => '<option' + (n === lastBy ? ' selected' : '') + '>' + esc(n) + '</option>').join('') + '</select></div>' +
+    '<div class="field"><label for="prNote">Nota (opcional)</label><input id="prNote" class="input" maxlength="120" autocomplete="off" placeholder="Ej. graduación de diciembre"></div>' +
+    '<div class="err" id="prErr" hidden></div>' +
+    '<div class="sheet-actions"><button type="button" class="btn ghost" id="prCancel">Volver</button><button type="submit" class="btn primary" id="prSave">Guardar cambio</button></div></form>',
+    sh => {
+      const prev = () => { const p = { belt: $('#prBelt', sh).value, stripes }; $('#prPrev', sh).innerHTML = beltHTML(p) + '<span class="lab">' + esc(beltText(p)) + '</span>'; };
+      prev();
+      $('#prBelt', sh).addEventListener('change', () => { if ($('#prBelt', sh).value !== curBelt) { stripes = 0; $$('.grades button', sh).forEach(x => x.setAttribute('aria-checked', String(x.dataset.g === '0'))); } prev(); });
+      $('.grades', sh).addEventListener('click', e => {
+        const b = e.target.closest('[data-g]'); if (!b) return;
+        stripes = +b.dataset.g;
+        $$('.grades button', sh).forEach(x => x.setAttribute('aria-checked', String(x === b)));
+        prev();
+      });
+      $('#prCancel', sh).addEventListener('click', () => openProfile(sid));
+      $('#prForm', sh).addEventListener('submit', async e => {
+        e.preventDefault();
+        const belt = $('#prBelt', sh).value, date = $('#prDate', sh).value || todayStr();
+        if (belt === (s.belt || 'blanca') && stripes === (s.stripes | 0)) { const er = $('#prErr', sh); er.hidden = false; er.textContent = 'Es la misma cinta y los mismos grados que ya tiene.'; return; }
+        const by = $('#prBy', sh).value; LS.set('promoBy', by);
+        const entry = { belt, stripes, from: { belt: s.belt || 'blanca', stripes: s.stripes | 0 }, date, by, note: $('#prNote', sh).value.trim(), at: new Date().toISOString() };
+        const latest = promosOf(s)[0];
+        const patch = { promos: { [rid()]: entry } };
+        if (!latest || date >= latest.date) { patch.belt = belt; patch.stripes = stripes; }
+        $('#prSave', sh).disabled = true;
+        try {
+          await enqueue('students/' + sid, () => A.db.doc('students/' + sid).update(patch));
+          toast('Cambio de cinta guardado · ' + s.name.split(' ')[0]);
+          openProfile(sid);
+        } catch (err) { writeError(err); if ($('#prSave', sh)) $('#prSave', sh).disabled = false; }
+      });
+    }
+  );
+}
+
+/* --- canjear puntos --- */
+function canjeSheet(sid) {
+  const s = A.students.get(sid); if (!s) return;
+  profId = null;
+  const r = rewardsFor(sid), pz = prizeList();
+  openSheet(
+    '<h2>Canjear puntos</h2><p><strong>' + esc(s.name) + '</strong> tiene <strong style="color:var(--gold)">' + r.balance + ' puntos</strong> disponibles.</p>' +
+    (pz.length ? '<div class="list">' + pz.map(x => '<div class="pz"><b>' + esc(x.name) + '</b><span class="cost num">' + x.cost + ' pts</span>' +
+        '<button class="btn small primary" data-pz="' + esc(x.id) + '"' + (r.balance < x.cost ? ' disabled' : '') + '>Canjear</button></div>').join('') + '</div>'
+      : '<p>Todavía no hay premios. Agrégalos en Asistencia → Premios.</p>') +
+    '<div class="sheet-actions"><button class="btn ghost" id="cjBack">Volver</button></div>',
+    sh => {
+      $('#cjBack', sh).addEventListener('click', () => openProfile(sid));
+      sh.addEventListener('click', e => {
+        const b = e.target.closest('[data-pz]'); if (!b || profId) return;
+        const x = pz.find(q => q.id === b.dataset.pz); if (!x) return;
+        const cid = rid();
+        upsert('canjes/' + sid, { items: { [cid]: { name: x.name, cost: x.cost, date: todayStr(), at: new Date().toISOString(), on: true } } })
+          .then(() => { toast('Canjeado: ' + x.name + ' · −' + x.cost + ' pts', 'Deshacer', () => upsert('canjes/' + sid, { items: { [cid]: { on: false } } }).catch(writeError)); openProfile(sid); })
+          .catch(writeError);
+      });
+    }
+  );
+}
+
 function setPane(p) {
   A.pane = p; LS.set('pane', p);
   $$('.seg [data-pane]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.pane === p)));
-  ['checkin', 'alumnos', 'historial'].forEach(n => { $('#p-' + n).hidden = n !== p; });
+  if (!$('#p-' + p)) p = 'checkin';
+  ['checkin', 'alumnos', 'premios', 'historial'].forEach(n => { $('#p-' + n).hidden = n !== p; });
   attRender();
 }
 $('.seg').addEventListener('click', e => { const b = e.target.closest('[data-pane]'); if (b) setPane(b.dataset.pane); });
@@ -1720,10 +2151,12 @@ function attRender() {
   requestAnimationFrame(() => {
     attQueued = false;
     attNote();
+    profRefresh();
     if (current === 'pagos') { payRender(); return; }
     if (current !== 'asistencia') return;
     if (A.pane === 'checkin') renderCheckin();
     else if (A.pane === 'alumnos') renderAlumnos();
+    else if (A.pane === 'premios') renderPremios();
     else renderHistorial();
   });
 }
@@ -1748,7 +2181,7 @@ async function attInit() {
       A.state = 'ready';
       attRender();
     }, err => { clearTimeout(slow); A.state = 'error'; A.err = err; attRender(); });
-    db.collection('days').orderBy('date', 'desc').limit(200).onSnapshot(snap => {
+    db.collection('days').orderBy('date', 'desc').limit(400).onSnapshot(snap => {
       A.days = new Map(snap.docs.map(d => [d.id, d.data()]));
       A.daysLoaded = true;
       attRender();
@@ -1758,6 +2191,8 @@ async function attInit() {
       P.loaded = true;
       attRender();
     }, err => { A.err = err; attRender(); });
+    db.collection('canjes').onSnapshot(snap => { R_.canjes = new Map(snap.docs.map(d => [d.id, d.data()])); attRender(); }, () => {});
+    db.doc('config/premios').onSnapshot(snap => { R_.prizes = (snap.exists && snap.data().items) || {}; attRender(); }, () => {});
     db.doc('config/pagos').onSnapshot(snap => {
       const f = snap.exists ? Number(snap.data().fee) : 0;
       P.fee = f > 0 ? Math.round(f) : DEFAULT_FEE;
