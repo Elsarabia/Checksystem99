@@ -566,6 +566,13 @@ textarea.input.note{min-height:84px;padding:10px 12px;font:15px/1.4 var(--f-body
 .kbar .badge{width:52px;height:52px;border-radius:12px}
 .kbar .badge img{height:38px}
 .sheet>*{flex-shrink:0}
+.pin-dots{display:flex;gap:14px;justify-content:center;padding:6px 0}
+.pin-dots i{width:16px;height:16px;border-radius:50%;border:2px solid var(--line-2)}
+.pin-dots i.on{background:var(--bone);border-color:var(--bone)}
+.pinpad{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.pinpad button{min-height:58px;border:1px solid var(--line-2);border-radius:14px;background:var(--slab-2);font:800 26px/1 var(--f-display);color:var(--bone)}
+.pinpad button:active{background:var(--slab-3)}
+.pinpad button[data-k="x"],.pinpad button[data-k="b"]{font:700 13px/1 var(--f-label);letter-spacing:.08em;text-transform:uppercase;color:var(--ash)}
 .kbar h2{margin:0;flex:1 1 240px;min-width:0;font:900 clamp(26px,5vw,44px)/1 var(--f-display);text-transform:uppercase;text-wrap:balance}
 body.kiosk .kbar{display:flex}
 body.kiosk .top,body.kiosk .tabbar,body.kiosk .seg,body.kiosk #ciAdd,body.kiosk .ci-head .field,body.kiosk .sched,body.kiosk #ciTopicBox,body.kiosk #aNote,body.kiosk [data-add],body.kiosk #ciGroup{display:none!important}
@@ -2153,17 +2160,24 @@ function kioskApply() {
   setPane('checkin');
 }
 function pinSheet(title, text, ok, onOk) {
-  openSheet('<form id="pinForm" novalidate style="display:contents"><h2>' + title + '</h2><p>' + text + '</p>' +
-    '<div class="field"><label for="pinIn">PIN de 4 dígitos</label><input id="pinIn" class="input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" autofocus></div>' +
-    '<div class="err" id="pinErr" hidden></div><div class="sheet-actions"><button type="button" class="btn ghost" id="pinCancel">Cancelar</button><button type="submit" class="btn primary">' + ok + '</button></div></form>',
+  // teclado numérico propio: no abre el teclado del teléfono, que en pantalla completa tapaba la hoja
+  openSheet('<h2>' + title + '</h2><p>' + text + '</p><div class="pin-dots" id="pinDots" role="status" aria-label="Dígitos escritos"></div><div class="err" id="pinErr" style="text-align:center" hidden></div>' +
+    '<div class="pinpad" id="pinPad">' + [1, 2, 3, 4, 5, 6, 7, 8, 9].map(n => '<button type="button" data-k="' + n + '">' + n + '</button>').join('') +
+    '<button type="button" data-k="x">Cancelar</button><button type="button" data-k="0">0</button><button type="button" data-k="b">Borrar</button></div>',
     sh => {
-      $('#pinCancel', sh).addEventListener('click', closeSheet);
-      $('#pinForm', sh).addEventListener('submit', e => {
-        e.preventDefault();
-        const pin = $('#pinIn', sh).value.trim();
-        if (!/^\d{4}$/.test(pin)) { const er = $('#pinErr', sh); er.hidden = false; er.textContent = 'Escribe 4 números.'; return; }
+      let pin = '';
+      const paint = () => { $('#pinDots', sh).innerHTML = [0, 1, 2, 3].map(i => '<i' + (i < pin.length ? ' class="on"' : '') + '></i>').join(''); };
+      paint();
+      $('#pinPad', sh).addEventListener('click', e => {
+        const b = e.target.closest('[data-k]'); if (!b) return;
+        const k = b.dataset.k;
+        if (k === 'x') { closeSheet(); return; }
+        if (k === 'b') { pin = pin.slice(0, -1); paint(); return; }
+        if (pin.length >= 4) return;
+        pin += k; paint(); $('#pinErr', sh).hidden = true;
+        if (pin.length < 4) return;
         const msg = onOk(pin);
-        if (msg) { const er = $('#pinErr', sh); er.hidden = false; er.textContent = msg; $('#pinIn', sh).value = ''; } else closeSheet();
+        if (msg) { const er = $('#pinErr', sh); er.hidden = false; er.textContent = msg; pin = ''; paint(); } else closeSheet();
       });
     });
 }
@@ -2964,6 +2978,12 @@ $('#syncBtn').addEventListener('click', () => {
   if (Live.ref) Live.ref.get().then(sn => { const d = sn.exists ? sn.data() : null; if (d && d.rev > Live.rev) liveApply(d); else livePush(); }).catch(() => livePush());
   else livePush();
 });
+
+if (window.visualViewport) {
+  const vv = window.visualViewport;
+  const fit = () => { const kb = Math.max(0, window.innerHeight - vv.height - vv.offsetTop); $('#scrim').style.paddingBottom = kb > 80 ? (kb + 12) + 'px' : ''; };
+  vv.addEventListener('resize', fit); vv.addEventListener('scroll', fit);
+}
 
 /* ================= teclado y arranque ================= */
 const KEYMAP = { q: ['r', 'pts', 2], w: ['r', 'pts', 3], e: ['r', 'pts', 4], a: ['r', 'adv'], s: ['r', 'pen'], u: ['w', 'pts', 2], i: ['w', 'pts', 3], o: ['w', 'pts', 4], j: ['w', 'adv'], k: ['w', 'pen'] };
