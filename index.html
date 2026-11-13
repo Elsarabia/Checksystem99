@@ -79,7 +79,7 @@ button{cursor:pointer}
 .icon-btn[aria-pressed="false"]{color:var(--ash-2)}
 main{flex:1;min-height:0;overflow-y:auto;overscroll-behavior:contain;position:relative}
 .view{min-height:100%;padding-block:16px 28px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));position:relative}
-.tabbar{flex:none;display:grid;grid-template-columns:repeat(4,1fr);gap:4px;padding-block:6px 4px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:var(--ink)}
+.tabbar{flex:none;display:grid;grid-template-columns:repeat(5,1fr);gap:4px;padding-block:6px 4px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));border-top:1px solid var(--line);background:var(--ink)}
 .tab{display:flex;flex-direction:column;align-items:center;gap:4px;padding:8px 4px;border:0;background:transparent;color:var(--ash-2);font:700 12px/1 var(--f-label);letter-spacing:.14em;text-transform:uppercase;border-radius:var(--r);position:relative}
 .tab svg{width:22px;height:22px}
 .tab[aria-current="page"]{color:var(--bone)}
@@ -534,6 +534,62 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
 @media (max-width:600px){.now{display:none}}
 @media (max-width:480px){#fsBtn{display:none}}
 @media (max-width:420px){.top-tools{gap:4px}.icon-btn{width:36px;height:36px}.brand-name{letter-spacing:.12em;font-size:13px}}
+
+/* ---------- inicio ---------- */
+.home{max-width:1100px;margin:0 auto;display:flex;flex-direction:column;gap:14px}
+.hero{border:1px solid var(--red-line);border-radius:20px;padding:18px;background:linear-gradient(150deg,var(--red-a),var(--red-b));display:flex;align-items:flex-end;justify-content:space-between;gap:14px;flex-wrap:wrap;box-shadow:0 14px 34px var(--glow)}
+.hero .lab{color:var(--bone);opacity:.85}
+.hero .big{font:900 clamp(64px,18vw,112px)/.8 var(--f-display);margin-top:10px}
+.hero .big small{font:700 15px/1 var(--f-label);letter-spacing:.14em;text-transform:uppercase;margin-left:8px;opacity:.9}
+.hero-acts{display:flex;gap:8px;flex-wrap:wrap}
+.hero .btn{background:rgba(0,0,0,.3);border-color:var(--red-line);box-shadow:none}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px}
+.card{text-align:left;border:1px solid var(--line-2);border-radius:16px;padding:14px;background:linear-gradient(180deg,rgba(255,255,255,.05),rgba(255,255,255,.012)),var(--slab);color:var(--bone);display:flex;flex-direction:column;gap:6px;min-width:0}
+.card b{font:900 38px/1 var(--f-display);font-variant-numeric:tabular-nums}
+.card span{font:700 11px/1.25 var(--f-label);letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.card.warn b{color:var(--gold)}
+.card.alert b{color:var(--blood-hi)}
+.pill{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid currentColor;font:700 10.5px/1.4 var(--f-label);letter-spacing:.1em;text-transform:uppercase;white-space:nowrap}
+.pill.gold{color:var(--gold)} .pill.red{color:var(--blood-hi)} .pill.calm{color:var(--calm)} .pill.ash{color:var(--ash)}
+.pills{display:flex;flex-wrap:wrap;gap:5px}
+textarea.input.note{min-height:84px;padding:10px 12px;font:15px/1.4 var(--f-body)}
+.ficha{display:grid;grid-template-columns:auto minmax(0,1fr);gap:6px 14px;font-size:14px;margin:0}
+.ficha dt{font:700 11px/1.6 var(--f-label);letter-spacing:.14em;text-transform:uppercase;color:var(--ash)}
+.ficha dd{margin:0;overflow-wrap:anywhere}
+.fight{display:grid;grid-template-columns:auto minmax(0,1fr);gap:10px;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font-size:14px}
+.fight:last-child{border-bottom:0}
+.fight b{font:700 15px/1.2 var(--f-label)}
+.fight span{color:var(--ash);font-size:13px}
+
+/* ---------- modo kiosco ---------- */
+.kbar{display:none;align-items:center;gap:12px;flex-wrap:wrap}
+.kbar .badge{width:52px;height:52px;border-radius:12px}
+.kbar .badge img{height:38px}
+.sheet>*{flex-shrink:0}
+.kbar h2{margin:0;flex:1 1 240px;min-width:0;font:900 clamp(26px,5vw,44px)/1 var(--f-display);text-transform:uppercase;text-wrap:balance}
+body.kiosk .kbar{display:flex}
+body.kiosk .top,body.kiosk .tabbar,body.kiosk .seg,body.kiosk #ciAdd,body.kiosk .ci-head .field,body.kiosk .sched,body.kiosk #ciTopicBox,body.kiosk #aNote,body.kiosk [data-add],body.kiosk #ciGroup{display:none!important}
+body.kiosk .app{display:flex;flex-direction:column}
+body.kiosk .grid{grid-template-columns:repeat(auto-fill,minmax(168px,1fr));gap:10px}
+body.kiosk .tile{min-height:150px}
+body.kiosk .tile .av{width:76px;height:76px;font-size:28px}
+body.kiosk .tile .nm{font-size:20px}
+body.kiosk .toast{bottom:calc(24px + env(safe-area-inset-bottom,0px));font-size:19px}
+
+/* ---------- ranking en las teles ---------- */
+.tv-rank{position:absolute;inset:0;display:flex;flex-direction:column;justify-content:center;gap:2.4vh;padding-block:4vh;padding-left:max(4vw,16px,env(safe-area-inset-left,0px));padding-right:max(4vw,16px,env(safe-area-inset-right,0px))}
+.tv-rk-head{display:flex;align-items:center;gap:2vw}
+.tv-rk-head h2{margin:0;font:900 min(9vh,7vw)/1 var(--f-display);text-transform:uppercase}
+.tv-rank ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1.4vh}
+.tv-rank li{display:grid;grid-template-columns:min(8vh,7vw) auto minmax(0,1fr) auto;align-items:center;gap:2vw;padding:1.5vh 2vw;border-radius:min(2vh,18px);background:var(--slab);border:1px solid var(--line-2);font:800 min(6vh,4.6vw)/1 var(--f-display);text-transform:uppercase}
+.tv-rank li:first-child{border-color:var(--gold)}
+.tv-rank .pos{color:var(--ash-2)}
+.tv-rank li:first-child .pos,.tv-rank .p{color:var(--gold)}
+.tv-rank .av{width:min(9vh,7vw);height:min(9vh,7vw);font-size:min(4vh,3vw)}
+.tv-rank .n{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.tv-bd{font:700 min(4vh,3vw)/1.2 var(--f-label);letter-spacing:.06em;color:var(--gold);text-align:center}
+.tv-empty{font:600 min(4vh,3vw)/1.3 var(--f-label);color:var(--ash);text-align:center}
+@media (max-width:480px){.tab{font-size:9.5px;letter-spacing:.03em;padding:8px 1px}.tab svg{width:20px;height:20px}}
 </style>
 
 </head>
@@ -563,6 +619,11 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
   </header>
 
   <main id="main">
+    <!-- INICIO -->
+    <section class="view" id="v-inicio" aria-label="Inicio" hidden>
+      <div class="home" id="homeBody"></div>
+    </section>
+
     <!-- CRONÓMETRO -->
     <section class="view" id="v-cronometro" aria-label="Cronómetro de rounds">
       <canvas id="embers" aria-hidden="true"></canvas>
@@ -600,7 +661,7 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
     <section class="view" id="v-marcador" aria-label="Marcador de lucha" hidden>
       <div class="board">
         <div class="side red" id="sideR" data-side="r">
-          <div class="side-head"><span class="corner">Rojo</span><input class="name" id="nameR" placeholder="Nombre" maxlength="28" autocomplete="off" aria-label="Nombre esquina roja"></div>
+          <div class="side-head"><span class="corner">Rojo</span><input class="name" id="nameR" placeholder="Nombre" maxlength="28" autocomplete="off" list="stNames" aria-label="Nombre esquina roja"></div>
           <div class="score-row">
             <div class="pts num" id="ptsR">0</div>
             <div class="vc"><div class="adv"><span>Ventajas</span><b id="advR">0</b></div><div class="pen"><span>Castigos</span><b id="penR">0</b></div></div>
@@ -632,7 +693,7 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
         </div>
 
         <div class="side white" id="sideW" data-side="w">
-          <div class="side-head"><span class="corner">Blanco</span><input class="name" id="nameW" placeholder="Nombre" maxlength="28" autocomplete="off" aria-label="Nombre esquina blanca"></div>
+          <div class="side-head"><span class="corner">Blanco</span><input class="name" id="nameW" placeholder="Nombre" maxlength="28" autocomplete="off" list="stNames" aria-label="Nombre esquina blanca"></div>
           <div class="score-row">
             <div class="pts num" id="ptsW">0</div>
             <div class="vc"><div class="adv"><span>Ventajas</span><b id="advW">0</b></div><div class="pen"><span>Castigos</span><b id="penW">0</b></div></div>
@@ -656,6 +717,11 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
     <!-- ASISTENCIA -->
     <section class="view" id="v-asistencia" aria-label="Asistencia" hidden>
       <div class="att">
+        <div class="kbar" id="kBar">
+          <span class="badge"><img class="tv-logo" alt="99 Jiu-Jitsu México"></span>
+          <h2>Toca tu nombre para registrar tu asistencia</h2>
+          <button class="btn small ghost" id="kExit">Salir del kiosco</button>
+        </div>
         <div class="seg" role="tablist" aria-label="Secciones de asistencia">
           <button role="tab" data-pane="checkin" aria-selected="true">Check-in</button>
           <button role="tab" data-pane="alumnos" aria-selected="false">Alumnos</button>
@@ -674,6 +740,10 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
           </div>
           <div class="chips" id="ciClass" aria-label="Clase"></div>
           <div class="sched">Martes a viernes · Niños 6:00–7:00 pm · Jóvenes y adultos 7:00–9:00 pm</div>
+          <div class="field" id="ciTopicBox">
+            <label for="ciTopic">Tema de la clase</label>
+            <input class="input" id="ciTopic" maxlength="120" placeholder="Técnica o tema que se vio hoy" autocomplete="off">
+          </div>
           <div class="ci-tools">
             <label class="sr" for="ciSearch">Buscar alumno</label>
             <input type="search" class="input" id="ciSearch" placeholder="Buscar alumno" autocomplete="off">
@@ -696,6 +766,7 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
             <label class="sr" for="alSearch">Buscar en la lista de alumnos</label>
             <input type="search" class="input" id="alSearch" placeholder="Buscar alumno" autocomplete="off">
           </div>
+          <div class="chips" id="alFilter" aria-label="Filtrar alumnos"></div>
           <div id="alList"></div>
         </div>
 
@@ -732,6 +803,7 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
           <button class="chip sm" data-tv="auto" aria-pressed="false">Auto</button>
           <button class="chip sm" data-tv="t" aria-pressed="false">Rounds</button>
           <button class="chip sm" data-tv="m" aria-pressed="false">Lucha</button>
+          <button class="chip sm" data-tv="k" aria-pressed="false">Ranking</button>
         </div>
         <span class="tv-hint" id="tvHint"></span>
         <span class="spacer"></span>
@@ -746,6 +818,7 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
         <div class="tv-sub" id="tvSub"></div>
         <div class="tv-dots" id="tvDots"></div>
       </div>
+      <div class="tv-rank" id="tvRank" hidden></div>
       <div class="tv-match" id="tvMatch" hidden>
         <div class="tv-top">
           <span class="tv-badge md"><img class="tv-logo" alt="99 Jiu-Jitsu México"></span>
@@ -787,7 +860,11 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
   </main>
 
   <nav class="tabbar" aria-label="Secciones">
-    <button class="tab" data-tab="cronometro" aria-current="page">
+    <button class="tab" data-tab="inicio" aria-current="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3.5 11.5L12 4l8.5 7.5"/><path d="M6 10v9.5h4.5V14h3v5.5H18V10"/></svg>
+      Inicio
+    </button>
+    <button class="tab" data-tab="cronometro" aria-current="false">
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="13.5" r="7.5"/><path d="M12 13.5V9.5M10 2.5h4M18.5 6.5l1.5-1.5"/></svg>
       Cronómetro
     </button>
@@ -806,6 +883,7 @@ body{background:radial-gradient(900px 420px at 50% -8%,var(--glow),transparent 6
   </nav>
 </div>
 
+<datalist id="stNames"></datalist>
 <input type="file" id="pfFile" accept="image/*" class="sr" tabindex="-1" aria-label="Foto de perfil">
 <div class="scrim" id="scrim" hidden><div class="sheet" id="sheet" role="dialog" aria-modal="true"></div></div>
 <div class="toast" id="toast" role="status" aria-live="polite"><span id="toastMsg"></span><button id="toastBtn" hidden>Deshacer</button></div>
@@ -979,11 +1057,12 @@ document.addEventListener('visibilitychange', () => {
 function syncWake() { (T.running || M.running || current === 'pantalla') ? Wake.on() : Wake.off(); }
 
 /* ================= navegación ================= */
-const VIEWS = ['cronometro', 'marcador', 'asistencia', 'pagos', 'pantalla'];
+const VIEWS = ['inicio', 'cronometro', 'marcador', 'asistencia', 'pagos', 'pantalla'];
 let current = 'cronometro', lastView = LS.get('lastView', 'cronometro');
 let focus = LS.get('focus', 't');
 function show(v) {
-  if (!VIEWS.includes(v)) v = 'cronometro';
+  if (!VIEWS.includes(v)) v = 'inicio';
+  if (K.on) v = 'asistencia';
   current = v;
   VIEWS.forEach(n => {
     $('#v-' + n).hidden = n !== v;
@@ -997,7 +1076,7 @@ function show(v) {
   Embers.toggle();
   syncWake();
   if (v === 'pantalla') { tvLast.key = ''; tvRender(); tvBarShow(); }
-  if (v === 'asistencia' || v === 'pagos') attRender();
+  if (v === 'asistencia' || v === 'pagos' || v === 'inicio') attRender();
 }
 $$('.tab').forEach(b => b.addEventListener('click', () => {
   const v = b.dataset.tab;
@@ -1310,7 +1389,7 @@ function mToggle() { M.running ? mPause() : mStart(); }
 function mNew() {
   M.running = false; M.remain = M.dur * 1000;
   M.r = { pts: 0, adv: 0, pen: 0 }; M.w = { pts: 0, adv: 0, pen: 0 };
-  M.hist = []; M.result = null; M.log = 'Lucha lista. Toca el reloj o Iniciar.';
+  M.hist = []; M.result = null; M.saved = false; M.log = 'Lucha lista. Toca el reloj o Iniciar.';
   syncWake(); mRender(); livePush('m');
 }
 function mTick() {
@@ -1344,11 +1423,12 @@ function mRender() {
   if (M.result) {
     const r = M.result;
     box.hidden = false;
+    const saveBtn = '<button class="btn" data-m="save"' + (M.saved ? ' disabled' : '') + '>' + (M.saved ? 'Lucha guardada' : 'Guardar lucha') + '</button>';
     box.innerHTML = r.winner
       ? '<div class="how">Gana ' + (r.winner === 'r' ? 'esquina roja' : 'esquina blanca') + '</div><div class="who">' + esc(label(r.winner)) + '</div><div class="how">' + esc(r.how) + '</div>' +
-        '<div class="row-b"><button class="btn primary" data-m="new">Nueva lucha</button></div>'
+        '<div class="row-b">' + saveBtn + '<button class="btn primary" data-m="new">Nueva lucha</button></div>'
       : '<div class="who">Empate</div><div class="how">' + esc(r.how) + '</div>' +
-        '<div class="row-b"><button class="btn" data-m="ref-r">Gana ' + esc(label('r')) + '</button><button class="btn" data-m="ref-w">Gana ' + esc(label('w')) + '</button><button class="btn ghost" data-m="new">Nueva lucha</button></div>';
+        '<div class="row-b"><button class="btn" data-m="ref-r">Gana ' + esc(label('r')) + '</button><button class="btn" data-m="ref-w">Gana ' + esc(label('w')) + '</button>' + saveBtn + '<button class="btn ghost" data-m="new">Nueva lucha</button></div>';
   } else { box.hidden = true; box.innerHTML = ''; }
 }
 $('#v-marcador').addEventListener('click', e => {
@@ -1358,6 +1438,7 @@ $('#v-marcador').addEventListener('click', e => {
   if (m) {
     const k = m.dataset.m;
     if (k === 'new') mNew();
+    else if (k === 'save') saveMatch();
     else if (k === 'ref-r' || k === 'ref-w') { mPush(); M.result = { winner: k === 'ref-r' ? 'r' : 'w', how: 'Decisión del árbitro' }; mRender(); livePush('m'); }
   }
 });
@@ -1470,7 +1551,7 @@ const A = {
   db: null, dl: null, state: 'init', stale: false, ro: false,
   students: new Map(), days: new Map(), pending: new Map(), daysLoaded: false,
   date: todayStr(), cls: guessClass(), group: null, q: '', pane: LS.get('pane', 'checkin'),
-  month: todayStr().slice(0, 7)
+  month: todayStr().slice(0, 7), topics: {}, af: 'todos'
 };
 A.group = A.cls === 'ninos' ? 'ninos' : 'todos';
 
@@ -1586,6 +1667,16 @@ function studentForm(id, preset) {
     )) +
     '<div class="field"><label for="stPhone">Teléfono o WhatsApp (opcional)</label><input id="stPhone" class="input" inputmode="tel" autocomplete="off" maxlength="30" value="' + esc(d.phone || '') + '"></div>' +
     '<div class="field"><label for="stFee">Mensualidad (MXN)</label><input id="stFee" class="input" type="number" inputmode="numeric" min="0" step="50" placeholder="' + P.fee + '" value="' + (typeof d.fee === 'number' ? d.fee : '') + '"><span class="hint">Vacío = cuota general de ' + money(P.fee) + '. Pon 0 si está becado. Los profes no pagan.</span></div>' +
+    '<div class="two"><div class="field"><label for="stBirth">Fecha de nacimiento</label><input id="stBirth" class="input" type="date" value="' + esc(d.birth || '') + '"></div>' +
+    '<div class="field"><label for="stJoined">Fecha de ingreso</label><input id="stJoined" class="input" type="date" value="' + esc(d.joined || String(d.createdAt || '').slice(0, 10) || (s ? '' : todayStr())) + '"></div></div>' +
+    '<div class="field"><label for="stTutor">Mamá, papá o tutor (para niños)</label><input id="stTutor" class="input" maxlength="60" autocomplete="off" value="' + esc(d.tutor || '') + '"></div>' +
+    '<div class="two"><div class="field"><label for="stEmName">Contacto de emergencia</label><input id="stEmName" class="input" maxlength="60" autocomplete="off" value="' + esc(d.emName || '') + '"></div>' +
+    '<div class="field"><label for="stEmPhone">Tel. de emergencia</label><input id="stEmPhone" class="input" inputmode="tel" maxlength="30" autocomplete="off" value="' + esc(d.emPhone || '') + '"></div></div>' +
+    '<div class="field"><label for="stDue">Día de pago de cada mes</label><input id="stDue" class="input" type="number" inputmode="numeric" min="1" max="28" placeholder="1" value="' + (d.dueDay || '') + '"><span class="hint">Vacío = día 1.</span></div>' +
+    '<div class="field"><label for="stNotes">Notas del profe</label><textarea id="stNotes" class="input note" maxlength="400">' + esc(d.notes || '') + '</textarea></div>' +
+    '<label class="check"><input type="checkbox" id="stWaiver"' + (d.waiver ? ' checked' : '') + '> Carta responsiva firmada</label>' +
+    '<label class="check"><input type="checkbox" id="stTrial"' + (d.trial ? ' checked' : '') + '> Está en semana de prueba (todavía no paga)</label>' +
+    '<label class="check"><input type="checkbox" id="stFrozen"' + (d.frozen ? ' checked' : '') + '> Membresía congelada (no se cobra ni cuenta como ausente)</label>' +
     '<label class="check"><input type="checkbox" id="stActive"' + (d.active !== false ? ' checked' : '') + '> Alumno activo (aparece en el check-in)</label>' +
     (fromCheckin ? '<label class="check"><input type="checkbox" id="stNow" checked> Marcarlo presente en ' + esc(className(A.cls)) + ' (' + esc(dayLabel(A.date)) + ')</label>' : '') +
     '<div class="err" id="stErr" hidden></div>' +
@@ -1632,7 +1723,12 @@ function studentForm(id, preset) {
         if (!name) { const er = $('#stErr', sh); er.hidden = false; er.textContent = 'Escribe el nombre del alumno.'; $('#stName', sh).focus(); return; }
         const fv = $('#stFee', sh).value.trim();
         const fee = fv === '' ? null : Math.max(0, Math.round(Number(fv)) || 0);
-        const data = { name, group: $('#stGroup', sh).value, belt: beltEl ? beltEl.value : s.belt, stripes, phone: $('#stPhone', sh).value.trim(), active: $('#stActive', sh).checked, fee, photo };
+        const data = { name, group: $('#stGroup', sh).value, belt: beltEl ? beltEl.value : s.belt, stripes, phone: $('#stPhone', sh).value.trim(), active: $('#stActive', sh).checked, fee, photo,
+          birth: $('#stBirth', sh).value || null, joined: $('#stJoined', sh).value || null, tutor: $('#stTutor', sh).value.trim(),
+          emName: $('#stEmName', sh).value.trim(), emPhone: $('#stEmPhone', sh).value.trim(),
+          dueDay: Math.max(1, Math.min(28, Math.round(Number($('#stDue', sh).value)) || 0)) || null, notes: $('#stNotes', sh).value.trim(),
+          waiver: $('#stWaiver', sh).checked, trial: $('#stTrial', sh).checked, frozen: $('#stFrozen', sh).checked,
+          trialStart: $('#stTrial', sh).checked ? ((s && s.trialStart) || todayStr()) : null };
         const now = !!($('#stNow', sh) && $('#stNow', sh).checked && data.active);
         $('#stSave', sh).disabled = true;
         const ok = await saveStudent(id, data, now);
@@ -1662,6 +1758,8 @@ function attNote() {
 }
 function renderCheckin() {
   $('#ciDate').value = A.date;
+  const tp = $('#ciTopic'), tk = A.date + '|' + A.cls;
+  if (document.activeElement !== tp) tp.value = tk in A.topics ? A.topics[tk] : (((A.days.get(A.date) || {}).topics || {})[A.cls] || '');
   $('#ciClass').innerHTML = CLASSES.map(c => '<button class="chip" data-c="' + c.id + '" aria-pressed="' + (c.id === A.cls) + '">' + c.name + '</button>').join('');
   $('#ciGroup').innerHTML = [{ id: 'todos', name: 'Todos' }].concat(GROUPS).map(g => '<button class="chip sm" data-g="' + g.id + '" aria-pressed="' + (g.id === A.group) + '">' + g.name + '</button>').join('');
   const ent = entriesFor(A.date, A.cls);
@@ -1700,7 +1798,15 @@ function renderCheckin() {
 $('#ciGrid').addEventListener('click', e => {
   if (e.target.closest('[data-add]')) { const q = A.q.trim(); studentForm(null, q ? { name: q.replace(/(^|\s)\S/g, m => m.toUpperCase()) } : null); return; }
   const t = e.target.closest('.tile'); if (!t) return;
-  setPresence(t.dataset.sid, t.getAttribute('aria-pressed') !== 'true');
+  const pressed = t.getAttribute('aria-pressed') === 'true';
+  if (K.on && pressed) { const st = A.students.get(t.dataset.sid); toast('Ya estás registrado' + (st ? ', ' + st.name.split(' ')[0] : '') + '. Oss.'); return; }
+  setPresence(t.dataset.sid, !pressed);
+});
+$('#ciTopic').addEventListener('change', e => {
+  if (!canWrite()) return;
+  const date = A.date, cls = A.cls, val = e.target.value.trim();
+  A.topics[date + '|' + cls] = val;
+  upsert('days/' + date, { date, topics: { [cls]: val } }).then(() => toast(val ? 'Tema de la clase guardado' : 'Tema borrado')).catch(writeError);
 });
 $('#ciClass').addEventListener('click', e => {
   const b = e.target.closest('[data-c]'); if (!b) return;
@@ -1725,9 +1831,12 @@ function renderAlumnos() {
     return;
   }
   let html = '';
-  const aq = fold(A.aq || '');
+  const aq = fold(A.aq || ''), fl = flagSets();
+  $('#alFilter').innerHTML = [['todos', 'Todos', all.length], ['riesgo', 'En riesgo', fl.risk.size], ['grado', 'Listos para grado', fl.ready.size], ['prueba', 'En prueba', all.filter(x => x.trial && x.active !== false).length]]
+    .map(([id, n, c]) => '<button class="chip sm" data-af="' + id + '" aria-pressed="' + (A.af === id) + '">' + n + '<small>' + c + '</small></button>').join('');
+  const afOk = x => A.af === 'riesgo' ? fl.risk.has(x.id) : A.af === 'grado' ? fl.ready.has(x.id) : A.af === 'prueba' ? !!(x.trial && x.active !== false) : true;
   GROUPS.forEach(g => {
-    const list = all.filter(s => s.group === g.id && (!aq || fold(s.name).includes(aq))).sort((a, b) => (a.active === false) - (b.active === false) || a.name.localeCompare(b.name, 'es'));
+    const list = all.filter(s => s.group === g.id && afOk(s) && (!aq || fold(s.name).includes(aq))).sort((a, b) => (a.active === false) - (b.active === false) || a.name.localeCompare(b.name, 'es'));
     if (!list.length) return;
     html += '<div class="group-title">' + esc(g.name) + ' · ' + list.length + '</div><div class="list">' + list.map(s => {
       const st = statsFor(s.id);
@@ -1735,16 +1844,17 @@ function renderAlumnos() {
       const payTxt = P.loaded && payEligible(s) && s.active !== false ? (isPaid(curM, s.id) ? ' · ' + monthName(curM) + ' pagado' : ' · debe ' + monthName(curM)) : '';
       return '<button class="row' + (s.active === false ? ' inactive' : '') + '" data-prof="' + esc(s.id) + '">' + avatarHTML(s) +
         '<span class="who"><b>' + esc(s.name) + '</b><span class="line">' + beltHTML(s) + '<span>' + (s.belt === 'ninguna' ? 'Striking' : 'Cinta ' + esc(beltName(s.belt).toLowerCase()) + (s.stripes ? ' · ' + s.stripes + (s.stripes === 1 ? ' grado' : ' grados') : '')) +
-        (s.active === false ? ' · inactivo' : '') + (st.last ? ' · última: ' + esc(dayLabel(st.last)) : ' · sin asistencias') + esc(payTxt) + '</span></span></span>' +
+        (s.active === false ? ' · inactivo' : '') + (st.last ? ' · última: ' + esc(dayLabel(st.last)) : ' · sin asistencias') + esc(payTxt) + '</span></span>' + pillsHTML(s, fl) + '</span>' +
         '<span class="stat"><b class="num">' + st.n30 + '</b>clases 30 d</span></button>';
     }).join('') + '</div>';
   });
-  $('#alList').innerHTML = html || '<div class="empty"><p>Nadie en la lista coincide con “' + esc(A.aq) + '”.</p></div>';
+  $('#alList').innerHTML = html || '<div class="empty"><p>' + (A.aq ? 'Nadie en la lista coincide con “' + esc(A.aq) + '”.' : 'Nadie en este filtro por ahora.') + '</p></div>';
 }
 $('#alList').addEventListener('click', e => {
   if (e.target.closest('[data-add]')) { studentForm(null); return; }
   const r = e.target.closest('[data-prof]'); if (r) openProfile(r.dataset.prof);
 });
+$('#alFilter').addEventListener('click', e => { const b = e.target.closest('[data-af]'); if (b) { A.af = b.dataset.af; renderAlumnos(); } });
 let aqTimer = 0;
 $('#alSearch').addEventListener('input', e => { clearTimeout(aqTimer); aqTimer = setTimeout(() => { A.aq = e.target.value; renderAlumnos(); }, 120); });
 $('#alAdd').addEventListener('click', () => studentForm(null));
@@ -1802,7 +1912,7 @@ function renderHistorial() {
       if (!parts.length) return '';
       return '<details class="day"><summary><b>' + esc(dayLabel(date, { weekday: 'long', day: 'numeric', month: 'short' })) + '</b><span class="counts">' +
         parts.map(p => '<span class="count">' + esc(p.c.name) + ' ' + p.ids.length + '</span>').join('') + '</span></summary><div class="body">' +
-        parts.map(p => '<div><h4>' + esc(p.c.name) + '</h4><p>' + p.ids.map(id => esc(nm(id))).sort((a, b) => a.localeCompare(b, 'es')).join(' · ') + '</p></div>').join('') +
+        parts.map(p => '<div><h4>' + esc(p.c.name) + (d.topics && d.topics[p.c.id] ? ' · ' + esc(d.topics[p.c.id]) : '') + '</h4><p>' + p.ids.map(id => esc(nm(id))).sort((a, b) => a.localeCompare(b, 'es')).join(' · ') + '</p></div>').join('') +
         '</div></details>';
     }).join('') + '</div></div></div>';
   $('#hBody').innerHTML = html;
@@ -1840,6 +1950,256 @@ $('#hPrev').addEventListener('click', () => { const [y, m] = A.month.split('-').
 $('#hNext').addEventListener('click', () => { const [y, m] = A.month.split('-').map(Number); const d = new Date(y, m, 1); A.month = d.getFullYear() + '-' + pad(d.getMonth() + 1); renderHistorial(); });
 
 /* --- pestañas internas --- */
+/* ================= INICIO, SEGUIMIENTO, LUCHAS Y KIOSCO ================= */
+const G = { gradeClasses: 30, riskDays: 14, trialDays: 7 };
+const X = { matches: [] };
+const K = { on: LS.get('kiosk', false) };
+const isMember = s => s.active !== false && s.group !== 'profes';
+const daysSince = ds => Math.round((parseDay(todayStr()) - parseDay(ds)) / 864e5);
+const firstName = s => String(s.name || '').split(' ')[0];
+function waUrl(s, txt) {
+  let d = String(s.phone || '').replace(/\D/g, '');
+  if (!d) return '';
+  if (d.length === 10) d = '52' + d;
+  return 'https://wa.me/' + d + '?text=' + encodeURIComponent(txt);
+}
+function waBtn(s, txt, title) {
+  const u = waUrl(s, txt);
+  return u ? '<a class="wa" href="' + esc(u) + '" target="_blank" rel="noopener" title="' + esc(title) + '" aria-label="' + esc(title + ' a ' + s.name) + '">' + WA_SVG + '</a>' : '';
+}
+function isBirthday(s, ds) { return !!s.birth && s.birth.slice(5) === ds.slice(5); }
+function birthdayIn(s) {
+  if (!s.birth) return null;
+  const t = parseDay(todayStr()), b = parseDay(s.birth);
+  let n = new Date(t.getFullYear(), b.getMonth(), b.getDate());
+  if (n < t) n = new Date(t.getFullYear() + 1, b.getMonth(), b.getDate());
+  return Math.round((n - t) / 864e5);
+}
+function gradeInfo(s, plus) {
+  if (s.group === 'profes' || s.belt === 'ninguna') return null;
+  const r = rewardIndex().get(s.id), promos = promosOf(s), since = promos.length ? promos[0].date : '';
+  const n = (r ? r.dates.filter(d => !since || d >= since).length : 0) + (plus || 0);
+  return { n, need: G.gradeClasses, ready: n >= G.gradeClasses };
+}
+function riskDaysOf(s) {
+  if (!isMember(s) || s.trial || s.frozen) return 0;
+  const r = rewardIndex().get(s.id), ref = (r && r.last) || s.joined || String(s.createdAt || '').slice(0, 10);
+  if (!ref) return 0;
+  const n = daysSince(ref);
+  return n >= G.riskDays ? n : 0;
+}
+let flagCache = null, flagFor = null, flagStu = null;
+function flagSets() {
+  if (flagCache && flagFor === A.days && flagStu === A.students) return flagCache;
+  const risk = new Map(), ready = new Set();
+  A.students.forEach(s => {
+    const n = riskDaysOf(s); if (n) risk.set(s.id, n);
+    if (isMember(s)) { const g = gradeInfo(s); if (g && g.ready) ready.add(s.id); }
+  });
+  flagCache = { risk, ready }; flagFor = A.days; flagStu = A.students;
+  return flagCache;
+}
+function trialLeft(s) { return G.trialDays - daysSince(s.trialStart || s.joined || String(s.createdAt || '').slice(0, 10) || todayStr()); }
+function pillsHTML(s, fl, block) {
+  const out = [];
+  if (s.trial && s.active !== false) { const l = trialLeft(s); out.push('<span class="pill calm">Prueba · ' + (l > 0 ? plural(l, 'día', 'días') : 'terminó') + '</span>'); }
+  if (s.frozen) out.push('<span class="pill ash">Congelado</span>');
+  if (isBirthday(s, todayStr())) out.push('<span class="pill gold">Cumpleaños hoy</span>');
+  if (fl.ready.has(s.id)) out.push('<span class="pill gold">Listo para grado</span>');
+  if (fl.risk.has(s.id)) out.push('<span class="pill red">' + fl.risk.get(s.id) + ' días sin venir</span>');
+  if (!out.length) return '';
+  return '<span class="pills"' + (block ? '' : ' style="margin-top:5px"') + '>' + out.join('') + '</span>';
+}
+function gradeHTML(s) {
+  const g = gradeInfo(s); if (!g) return '';
+  const pct = Math.min(100, Math.round(g.n / g.need * 100));
+  return '<div class="level"><div class="lab"><span>' + (g.ready ? 'Listo para el siguiente grado' : 'Rumbo al siguiente grado') + '</span><span>' + g.n + ' / ' + g.need + ' clases</span></div>' +
+    '<div class="progress" role="progressbar" aria-label="Avance al siguiente grado" aria-valuemin="0" aria-valuemax="' + g.need + '" aria-valuenow="' + Math.min(g.n, g.need) + '"><i style="width:' + pct + '%"></i></div></div>';
+}
+function dueText(s, month) {
+  const cur = todayStr().slice(0, 7), d = s.dueDay || 1;
+  if (month > cur) return '';
+  if (month < cur) return ' · vencido';
+  const day = Number(todayStr().slice(8));
+  return day > d ? ' · vencido hace ' + plural(day - d, 'día', 'días') : ' · vence el día ' + d;
+}
+function fillNames() {
+  $('#stNames').innerHTML = Array.from(A.students.values()).filter(s => s.active !== false).map(s => '<option value="' + esc(s.name) + '"></option>').join('');
+}
+
+/* --- luchas --- */
+function sidByName(n) {
+  const f = fold(String(n).trim()); if (!f) return null;
+  const hit = Array.from(A.students.values()).filter(s => fold(s.name) === f);
+  return hit.length === 1 ? hit[0].id : null;
+}
+function saveMatch() {
+  if (!M.result || M.saved || !canWrite()) return;
+  const rn = $('#nameR').value.trim(), wn = $('#nameW').value.trim();
+  const doc = { date: todayStr(), at: new Date().toISOString(), dur: M.dur, winner: M.result.winner || null, how: M.result.how,
+    r: Object.assign({ name: rn || 'Rojo', id: sidByName(rn) }, M.r), w: Object.assign({ name: wn || 'Blanco', id: sidByName(wn) }, M.w) };
+  ['r', 'w'].forEach(k => { const st = doc[k].id && A.students.get(doc[k].id); if (st) doc[k].name = st.name; });
+  M.saved = true; mRender();
+  enqueue('matches', () => A.db.collection('matches').doc(rid()).set(doc))
+    .then(() => toast(doc.r.id && doc.w.id ? 'Lucha guardada en el récord de los dos' : 'Lucha guardada. Para sumarla al récord, elige el nombre del alumno de la lista.'))
+    .catch(e => { M.saved = false; mRender(); writeError(e); });
+}
+function fightsOf(sid) {
+  let w = 0, l = 0, d = 0; const list = [];
+  X.matches.forEach(m => {
+    const side = m.r && m.r.id === sid ? 'r' : m.w && m.w.id === sid ? 'w' : null; if (!side) return;
+    const res = !m.winner ? 'E' : m.winner === side ? 'G' : 'P';
+    if (res === 'G') w++; else if (res === 'P') l++; else d++;
+    list.push({ m, side, res });
+  });
+  return { w, l, d, list };
+}
+function profExtra(s) {
+  let html = '';
+  const f = fightsOf(s.id);
+  if (f.list.length) {
+    html += '<div class="sec"><h3>Luchas</h3><span class="pf-sub" style="margin:0">' + plural(f.w, 'ganada', 'ganadas') + ' · ' + plural(f.l, 'perdida', 'perdidas') + (f.d ? ' · ' + plural(f.d, 'empate', 'empates') : '') + '</span></div><div class="list">' +
+      f.list.slice(0, 5).map(x => { const me = x.m[x.side], op = x.m[x.side === 'r' ? 'w' : 'r'];
+        return '<div class="fight"><span class="pill ' + (x.res === 'G' ? 'gold' : x.res === 'P' ? 'red' : 'ash') + '">' + (x.res === 'G' ? 'Ganó' : x.res === 'P' ? 'Perdió' : 'Empate') + '</span>' +
+          '<div><b>vs ' + esc(op.name) + ' · ' + (me.pts | 0) + '–' + (op.pts | 0) + '</b><br><span>' + esc(dayLabel(x.m.date, { day: 'numeric', month: 'short', year: 'numeric' })) + ' · ' + esc(x.m.how || '') + '</span></div></div>'; }).join('') + '</div>';
+  }
+  const rows = [];
+  const add = (k, v) => { if (v) rows.push('<dt>' + k + '</dt><dd>' + v + '</dd>'); };
+  if (s.birth) { const bi = birthdayIn(s); add('Cumpleaños', esc(dayLabel(s.birth, { day: 'numeric', month: 'long' })) + (bi === 0 ? ' · hoy' : bi <= 30 ? ' · en ' + plural(bi, 'día', 'días') : '')); }
+  add('Ingreso', s.joined ? esc(dayLabel(s.joined, { day: 'numeric', month: 'long', year: 'numeric' })) : '');
+  add('Tutor', esc(s.tutor || ''));
+  add('Emergencia', esc([s.emName, s.emPhone].filter(Boolean).join(' · ')));
+  if (payEligible(s)) add('Día de pago', 'Día ' + (s.dueDay || 1) + ' · ' + money(feeOf(s)));
+  add('Responsiva', s.waiver ? 'Firmada' : (s.group !== 'profes' ? '<span style="color:var(--gold)">Pendiente de firmar</span>' : ''));
+  add('Notas', esc(s.notes || '').replace(/\n/g, '<br>'));
+  if (rows.length) html += '<div class="sec"><h3>Ficha</h3></div><dl class="ficha">' + rows.join('') + '</dl>';
+  return html;
+}
+
+/* --- inicio --- */
+function renderInicio() {
+  const today = todayStr(), ym = today.slice(0, 7), all = Array.from(A.students.values()), fl = flagSets();
+  const present = new Set();
+  CLASSES.forEach(c => presentIds(today, c.id).forEach(id => present.add(id)));
+  const plist = payList(); let collected = 0, pendN = 0;
+  plist.forEach(s => { const e = payEntry(ym, s.id); if (e && e.on) collected += Number(e.amount) || 0; else pendN++; });
+  const trials = all.filter(s => s.trial && s.active !== false);
+  const bdays = all.filter(s => s.active !== false && s.birth).map(s => ({ s, n: birthdayIn(s) })).filter(x => x.n !== null && x.n <= 7).sort((a, b) => a.n - b.n);
+  const risk = all.filter(s => fl.risk.has(s.id)).sort((a, b) => fl.risk.get(b.id) - fl.risk.get(a.id));
+  const ready = all.filter(s => fl.ready.has(s.id));
+  const dateTxt = new Date().toLocaleDateString('es-MX', { weekday: 'long', day: 'numeric', month: 'long' });
+  let html = '<div class="hero"><div><div class="lab">' + esc(dateTxt) + '</div><div class="big num">' + present.size + '<small>' + (present.size === 1 ? 'presente hoy' : 'presentes hoy') + '</small></div></div>' +
+    '<div class="hero-acts"><button class="btn" data-go="checkin">Tomar asistencia</button>' + (A.db && !A.ro ? '<button class="btn" data-go="kiosk">Modo kiosco</button>' : '') + '</div></div>';
+  html += '<div class="cards">' +
+    '<button class="card" data-go="pagos"><b>' + money(collected) + '</b><span>Cobrado en ' + esc(monthName(ym)) + '</span></button>' +
+    '<button class="card' + (pendN ? ' warn' : '') + '" data-go="pagos"><b>' + pendN + '</b><span>Mensualidades pendientes</span></button>' +
+    '<button class="card' + (risk.length ? ' alert' : '') + '" data-go="riesgo"><b>' + risk.length + '</b><span>Alumnos en riesgo</span></button>' +
+    '<button class="card' + (ready.length ? ' warn' : '') + '" data-go="grado"><b>' + ready.length + '</b><span>Listos para grado</span></button>' +
+    '<button class="card" data-go="prueba"><b>' + trials.length + '</b><span>En semana de prueba</span></button>' +
+    '<button class="card" data-go="alumnos"><b>' + all.filter(isMember).length + '</b><span>Alumnos activos</span></button></div>';
+  const row = (s, sub, act) => '<div class="prow">' + avatarHTML(s) + '<div class="who"><b>' + esc(s.name) + '</b><span>' + sub + '</span></div><div class="acts-r">' + (act || '') + '<button class="btn small" data-prof="' + esc(s.id) + '">Ver</button></div></div>';
+  if (!all.length) {
+    html += '<div class="empty"><h3>Tu gym en un vistazo</h3><p>Aquí ves cada día quién vino, quién debe la mensualidad, quién lleva semanas sin venir, quién ya está listo para grado y los cumpleaños. Se llena solo en cuanto registres alumnos y check-ins.</p><button class="btn primary" data-go="alumnos">Registrar alumnos</button></div>';
+  }
+  if (bdays.length) html += '<div class="list-head"><h3 class="h3">Cumpleaños</h3></div><div class="list">' + bdays.map(x =>
+    row(x.s, x.n === 0 ? '<span class="pill gold">Hoy</span>' : 'En ' + plural(x.n, 'día', 'días') + ' · ' + esc(dayLabel(x.s.birth, { day: 'numeric', month: 'long' })),
+      x.n === 0 ? waBtn(x.s, '¡Feliz cumpleaños, ' + firstName(x.s) + '! De parte de toda la familia 99 Jiu-Jitsu México. ¡Oss!', 'Felicitar por WhatsApp') : '')).join('') + '</div>';
+  if (risk.length) html += '<div class="list-head"><h3 class="h3">En riesgo<small>' + G.riskDays + ' días o más sin venir</small></h3></div><div class="list">' + risk.slice(0, 8).map(s =>
+    row(s, '<span class="pill red">' + fl.risk.get(s.id) + ' días sin venir</span>', waBtn(s, 'Hola ' + firstName(s) + ', te extrañamos en 99 Jiu-Jitsu México. ¿Todo bien? Te esperamos en el tatami. ¡Oss!', 'Escribir por WhatsApp'))).join('') + '</div>';
+  if (ready.length) html += '<div class="list-head"><h3 class="h3">Listos para grado<small>' + G.gradeClasses + ' clases desde su último cambio</small></h3></div><div class="list">' + ready.slice(0, 8).map(s => {
+    const g = gradeInfo(s); return row(s, esc(beltText(s)) + ' · ' + g.n + ' clases'); }).join('') + '</div>';
+  if (trials.length) html += '<div class="list-head"><h3 class="h3">Semana de prueba</h3></div><div class="list">' + trials.map(s => { const l = trialLeft(s);
+    return row(s, l > 0 ? 'Le quedan ' + plural(l, 'día', 'días') : '<span class="pill gold">Terminó su prueba</span>', waBtn(s, 'Hola ' + firstName(s) + ', ¿qué te pareció tu semana de prueba en 99 Jiu-Jitsu México? Cuando gustes te inscribimos. ¡Oss!', 'Dar seguimiento por WhatsApp')); }).join('') + '</div>';
+  if (A.db && !A.ro) html += '<div><button class="btn small ghost" data-go="ajustes">Ajustes de seguimiento</button></div>';
+  $('#homeBody').innerHTML = html;
+}
+function goAlumnos(f) { A.af = f || 'todos'; A.pane = 'alumnos'; LS.set('pane', 'alumnos'); if (location.hash !== '#asistencia') location.hash = 'asistencia'; else show('asistencia'); setPane('alumnos'); }
+$('#homeBody').addEventListener('click', e => {
+  const pr = e.target.closest('[data-prof]'); if (pr) { openProfile(pr.dataset.prof); return; }
+  const b = e.target.closest('[data-go]'); if (!b) return;
+  const g = b.dataset.go;
+  if (g === 'pagos') location.hash = 'pagos';
+  else if (g === 'checkin') { location.hash = 'asistencia'; setPane('checkin'); }
+  else if (g === 'kiosk') kioskEnter();
+  else if (g === 'ajustes') gymSettings();
+  else goAlumnos(g === 'alumnos' ? 'todos' : g);
+});
+function gymSettings() {
+  const f = (id, label, v, hint) => '<div class="field"><label for="' + id + '">' + label + '</label><input id="' + id + '" class="input" type="number" inputmode="numeric" min="1" value="' + v + '"><span class="hint">' + hint + '</span></div>';
+  openSheet('<form id="gyForm" novalidate style="display:contents"><h2>Seguimiento</h2>' +
+    f('gyGrade', 'Clases para el siguiente grado', G.gradeClasses, 'Con cuántas clases desde su último cambio un alumno aparece como listo para grado.') +
+    f('gyRisk', 'Días sin venir para estar en riesgo', G.riskDays, 'A partir de cuántos días sin check-in te avisa.') +
+    f('gyTrial', 'Días de prueba gratis', G.trialDays, 'Duración de la semana de prueba.') +
+    '<div class="sheet-actions"><button type="button" class="btn ghost" id="gyCancel">Cancelar</button><button type="submit" class="btn primary">Guardar</button></div></form>',
+    sh => {
+      $('#gyCancel', sh).addEventListener('click', closeSheet);
+      $('#gyForm', sh).addEventListener('submit', e => {
+        e.preventDefault();
+        const v = id => Math.max(1, Math.round(Number($('#' + id, sh).value)) || 1);
+        if (!canWrite()) return;
+        const patch = { gradeClasses: v('gyGrade'), riskDays: v('gyRisk'), trialDays: v('gyTrial') };
+        closeSheet();
+        upsert('config/gym', patch).then(() => toast('Ajustes guardados')).catch(writeError);
+      });
+    });
+}
+
+/* --- modo kiosco --- */
+function kioskApply() {
+  document.body.classList.toggle('kiosk', K.on);
+  if (!K.on) return;
+  A.date = todayStr();
+  if (location.hash !== '#asistencia') location.hash = 'asistencia'; else show('asistencia');
+  setPane('checkin');
+}
+function pinSheet(title, text, ok, onOk) {
+  openSheet('<form id="pinForm" novalidate style="display:contents"><h2>' + title + '</h2><p>' + text + '</p>' +
+    '<div class="field"><label for="pinIn">PIN de 4 dígitos</label><input id="pinIn" class="input" type="password" inputmode="numeric" maxlength="4" autocomplete="off" autofocus></div>' +
+    '<div class="err" id="pinErr" hidden></div><div class="sheet-actions"><button type="button" class="btn ghost" id="pinCancel">Cancelar</button><button type="submit" class="btn primary">' + ok + '</button></div></form>',
+    sh => {
+      $('#pinCancel', sh).addEventListener('click', closeSheet);
+      $('#pinForm', sh).addEventListener('submit', e => {
+        e.preventDefault();
+        const pin = $('#pinIn', sh).value.trim();
+        if (!/^\d{4}$/.test(pin)) { const er = $('#pinErr', sh); er.hidden = false; er.textContent = 'Escribe 4 números.'; return; }
+        const msg = onOk(pin);
+        if (msg) { const er = $('#pinErr', sh); er.hidden = false; er.textContent = msg; $('#pinIn', sh).value = ''; } else closeSheet();
+      });
+    });
+}
+function kioskEnter() {
+  if (!canWrite()) return;
+  pinSheet('Modo kiosco', 'La pantalla queda solo con el check-in para que cada alumno toque su nombre. Elige un PIN: se pide para salir del kiosco en este dispositivo.', 'Activar kiosco', pin => {
+    LS.set('kioskPin', pin); K.on = true; LS.set('kiosk', true);
+    try { if (document.fullscreenEnabled && !document.fullscreenElement) document.documentElement.requestFullscreen().catch(() => {}); } catch (e) {}
+    setTimeout(kioskApply, 0);
+  });
+}
+$('#kExit').addEventListener('click', () => {
+  pinSheet('Salir del kiosco', 'Escribe el PIN que elegiste al activarlo.', 'Salir', pin => {
+    if (pin !== LS.get('kioskPin', '')) return 'PIN incorrecto.';
+    K.on = false; LS.set('kiosk', false); document.body.classList.remove('kiosk');
+    try { if (document.fullscreenElement) document.exitFullscreen().catch(() => {}); } catch (e) {}
+    setTimeout(() => { location.hash = 'inicio'; }, 0);
+  });
+});
+$$('.kbar .tv-logo').forEach(i => { i.src = $('#brandLogo').src; });
+setInterval(() => { if (K.on && A.date !== todayStr()) { A.date = todayStr(); A.cls = guessClass(); attRender(); } }, 60000);
+
+/* --- ranking en las teles --- */
+function tvRank() {
+  if (Date.now() - (tvLast.kAt || 0) < 5000) return;
+  tvLast.kAt = Date.now();
+  const today = todayStr(), ym = today.slice(0, 7);
+  const rows = Array.from(A.students.values()).filter(isMember).map(s => ({ s, p: monthPoints(s.id, ym) })).filter(x => x.p > 0)
+    .sort((a, b) => b.p - a.p || a.s.name.localeCompare(b.s.name, 'es')).slice(0, 5);
+  const bd = Array.from(A.students.values()).filter(s => s.active !== false && isBirthday(s, today)).map(s => s.name);
+  $('#tvRank').innerHTML = '<div class="tv-rk-head"><span class="tv-badge md"><img class="tv-logo" alt="" src="' + $('#brandLogo').src + '"></span><h2>Ranking de ' + esc(monthName(ym)) + '</h2></div>' +
+    (rows.length ? '<ol>' + rows.map((x, i) => '<li><span class="pos">' + (i + 1) + '</span>' + avatarHTML(x.s) + '<span class="n">' + esc(x.s.name) + '</span><span class="p num">' + x.p + ' pts</span></li>').join('') + '</ol>'
+      : '<div class="tv-empty">Cada check-in suma ' + PTS_CLASS + ' puntos. Aquí aparecen los primeros lugares del mes.</div>') +
+    (bd.length ? '<div class="tv-bd">Feliz cumpleaños, ' + esc(bd.join(' y ')) + '</div>' : '');
+}
+
 /* ================= RECOMPENSAS, PERFIL Y CINTAS ================= */
 const PTS_CLASS = 10, PTS_WEEK = 20, WEEK_MIN = 3, LEVEL_SIZE = 250;
 const BADGES = [[1, 'Primera clase'], [10, '10 clases'], [25, '25 clases'], [50, '50 clases'], [100, '100 clases'], [200, '200 clases']];
@@ -1856,8 +2216,8 @@ function rewardIndex() {
     const en = d.entries || {};
     Object.keys(en).forEach(c => Object.keys(en[c] || {}).forEach(sid => {
       if (!en[c][sid] || !en[c][sid].on) return;
-      let r = idx.get(sid); if (!r) { r = { dates: [], weeks: new Map() }; idx.set(sid, r); }
-      r.dates.push(date);
+      let r = idx.get(sid); if (!r) { r = { dates: [], weeks: new Map(), last: '' }; idx.set(sid, r); }
+      r.dates.push(date); if (date > r.last) r.last = date;
       const w = weekStart(date); r.weeks.set(w, (r.weeks.get(w) || 0) + 1);
     }));
   });
@@ -1892,6 +2252,9 @@ function checkinMsg(sid, date) {
   let pts = PTS_CLASS, extra = '';
   if (wk === WEEK_MIN) { pts += PTS_WEEK; extra = ' · semana completa'; }
   const b = BADGES.find(x => x[0] === n); if (b) extra = ' · insignia: ' + b[1].toLowerCase();
+  if (isBirthday(s, date)) extra += ' · ¡feliz cumpleaños!';
+  const gi = gradeInfo(s, 1); if (gi && gi.ready) extra += ' · listo para grado';
+  if (P.loaded && payEligible(s) && !isPaid(date.slice(0, 7), sid)) extra += ' · debe ' + monthName(date.slice(0, 7));
   return ' · +' + pts + ' pts' + extra;
 }
 function prizeList() {
@@ -1961,7 +2324,7 @@ let profId = null, profSig = '', pfTarget = null;
 function profSignature(sid) {
   const s = A.students.get(sid); if (!s) return 'x';
   const r = rewardsFor(sid);
-  return JSON.stringify([s, r.classes, r.streak, canjesOf(sid).length, A.ro, isPaid(todayStr().slice(0, 7), sid)]);
+  return JSON.stringify([s, r.classes, r.streak, canjesOf(sid).length, A.ro, isPaid(todayStr().slice(0, 7), sid), X.matches.length, G.gradeClasses, G.riskDays]);
 }
 function profRefresh() {
   if (!profId || $('#scrim').hidden) return;
@@ -1982,8 +2345,9 @@ function openProfile(sid, keepScroll) {
     '<div style="min-width:0"><h2>' + esc(s.name) + '</h2><div class="line">' + beltHTML(s) + '<span class="pf-sub" style="margin:0">' + esc(beltText(s)) + '</span></div>' +
     '<div class="pf-sub">' + esc(groupName(s.group)) + (s.active === false ? ' · inactivo' : '') + (s.phone ? ' · ' + esc(s.phone) : '') +
     (P.loaded && payEligible(s) && s.active !== false ? ' · ' + (isPaid(curM, sid) ? esc(monthName(curM)) + ' pagado' : 'debe ' + esc(monthName(curM))) : '') + '</div></div></div>';
+  html += pillsHTML(s, flagSets(), true);
   if (!A.ro) html += '<div class="photo-btns"><label for="pfFile" class="btn small">' + (hasPhoto ? 'Cambiar foto' : 'Agregar foto') + '</label>' +
-    (hasPhoto ? '<button class="btn small ghost" data-pf="nophoto">Quitar foto</button>' : '') + '<button class="btn small ghost" data-pf="edit">Editar datos</button></div>';
+    (hasPhoto ? '<button class="btn small ghost" data-pf="nophoto">Quitar foto</button>' : '') + '<button class="btn small ghost" data-pf="edit">Editar datos</button>' + (s.trial ? '<button class="btn small primary" data-pf="enroll">Inscribir</button>' : '') + '</div>';
   html += '<div class="pf-stats"><div class="kpi"><b class="num">' + r.classes + '</b><span>Clases</span></div><div class="kpi"><b class="num">' + st.n30 + '</b><span>En 30 días</span></div>' +
     '<div class="kpi"><b class="num">' + r.streak + '</b><span>Racha (sem.)</span></div>' +
     (staff ? '<div class="kpi"><b class="num">' + r.best + '</b><span>Mejor racha</span></div>' : '<div class="kpi"><b class="num">' + r.balance + '</b><span>Puntos</span></div>') + '</div>';
@@ -1998,6 +2362,7 @@ function openProfile(sid, keepScroll) {
   html += '<div class="sec"><h3>Cinta</h3>' + (A.ro ? '' : '<button class="btn small primary" data-pf="promo">Registrar cambio de cinta</button>') + '</div>';
   html += '<div class="belt-now">' + beltHTML(s) + '<span>' + esc(beltText(s)) + '</span><small>' +
     (since ? 'desde ' + esc(dayLabel(since, { day: 'numeric', month: 'short', year: 'numeric' })) + ' · ' : '') + plural(sinceN, 'clase', 'clases') + (since ? ' desde el último cambio' : ' registradas') + '</small></div>';
+  html += gradeHTML(s);
   html += promos.length
     ? '<ol class="tl">' + promos.map((p, i) => {
         const older = promos[i + 1], between = r.dates.filter(d => d < p.date && (!older || d >= older.date)).length;
@@ -2015,6 +2380,7 @@ function openProfile(sid, keepScroll) {
     if (cj.length) html += '<div class="list">' + cj.map(x => '<div class="pz"><b>' + esc(x.name) + '</b><span class="cost num">−' + (Number(x.cost) || 0) + '</span>' +
       '<span class="pf-sub" style="margin:0">' + (x.date ? esc(dayLabel(x.date, { day: 'numeric', month: 'short' })) : '') + (A.ro ? '' : ' · <button class="linkbtn" data-canjedel="' + esc(x.id) + '">Anular</button>') + '</span></div>').join('') + '</div>';
   }
+  html += profExtra(s);
   html += '<div class="sheet-actions"><button class="btn primary" data-pf="close">Listo</button></div>';
   profId = sid; pfTarget = sid; profSig = profSignature(sid);
   if (keepScroll) { $('#sheet').innerHTML = html; $('#sheet').scrollTop = top; }
@@ -2027,6 +2393,7 @@ $('#sheet').addEventListener('click', e => {
   if (b) {
     const a = b.dataset.pf;
     if (a === 'close') closeSheet();
+    else if (a === 'enroll') { if (canWrite()) enqueue('students/' + sid, () => A.db.doc('students/' + sid).update({ trial: false, trialStart: null, joined: s.joined || todayStr() })).then(() => toast(s.name.split(' ')[0] + ' ya es alumno inscrito')).catch(writeError); }
     else if (a === 'edit') { profId = null; studentForm(sid); }
     else if (a === 'promo') { if (canWrite()) promoForm(sid); }
     else if (a === 'canje') { if (canWrite()) canjeSheet(sid); }
@@ -2138,7 +2505,7 @@ function canjeSheet(sid) {
 function setPane(p) {
   A.pane = p; LS.set('pane', p);
   $$('.seg [data-pane]').forEach(b => b.setAttribute('aria-selected', String(b.dataset.pane === p)));
-  if (!$('#p-' + p)) p = 'checkin';
+  if (!$('#p-' + p) || K.on) p = 'checkin';
   ['checkin', 'alumnos', 'premios', 'historial'].forEach(n => { $('#p-' + n).hidden = n !== p; });
   attRender();
 }
@@ -2152,6 +2519,7 @@ function attRender() {
     attQueued = false;
     attNote();
     profRefresh();
+    if (current === 'inicio') { renderInicio(); return; }
     if (current === 'pagos') { payRender(); return; }
     if (current !== 'asistencia') return;
     if (A.pane === 'checkin') renderCheckin();
@@ -2177,6 +2545,7 @@ async function attInit() {
   try {
     db.collection('students').onSnapshot(snap => {
       A.students = new Map(snap.docs.map(d => [d.id, Object.assign({ id: d.id }, d.data())]));
+      fillNames();
       if (!snap.metadata.fromCache) { confirmed = true; A.stale = false; clearTimeout(slow); }
       A.state = 'ready';
       attRender();
@@ -2191,6 +2560,12 @@ async function attInit() {
       P.loaded = true;
       attRender();
     }, err => { A.err = err; attRender(); });
+    db.collection('matches').orderBy('at', 'desc').limit(300).onSnapshot(snap => { X.matches = snap.docs.map(d => Object.assign({ id: d.id }, d.data())); attRender(); }, () => {});
+    db.doc('config/gym').onSnapshot(snap => {
+      const c = snap.exists ? snap.data() : {};
+      ['gradeClasses', 'riskDays', 'trialDays'].forEach(k => { const v = Math.round(Number(c[k])); if (v > 0) G[k] = v; });
+      attRender();
+    }, () => {});
     db.collection('canjes').onSnapshot(snap => { R_.canjes = new Map(snap.docs.map(d => [d.id, d.data()])); attRender(); }, () => {});
     db.doc('config/premios').onSnapshot(snap => { R_.prizes = (snap.exists && snap.data().items) || {}; attRender(); }, () => {});
     db.doc('config/pagos').onSnapshot(snap => {
@@ -2206,7 +2581,7 @@ let tvMode = LS.get('tvMode', 'auto'), tvLast = {}, tvBarTimer = 0;
 $$('.tv-logo').forEach(i => { i.src = $('#brandLogo').src; });
 if (!document.fullscreenEnabled) $('#tvFs').hidden = true;
 function tvWhich() {
-  if (tvMode === 't' || tvMode === 'm') return tvMode;
+  if (tvMode === 't' || tvMode === 'm' || tvMode === 'k') return tvMode;
   if (T.running && !M.running) return 't';
   if (M.running && !T.running) return 'm';
   return focus;
@@ -2229,6 +2604,9 @@ function tvRender() {
   const w = tvWhich();
   $('#tvRounds').hidden = w !== 't';
   $('#tvMatch').hidden = w !== 'm';
+  $('#tvRank').hidden = w !== 'k';
+  if (w === 'k') { tvRank(); return; }
+  tvLast.kAt = 0;
   if (w === 't') {
     const now = performance.now();
     let left, total;
@@ -2298,7 +2676,7 @@ const DEFAULT_FEE = 1000;
 const METHODS = ['Efectivo', 'Transferencia', 'Tarjeta', 'Mercado Pago'];
 const P = { fee: DEFAULT_FEE, months: new Map(), pending: new Map(), loaded: false, month: todayStr().slice(0, 7), filter: 'pend', q: '' };
 const feeOf = s => (typeof s.fee === 'number' && s.fee >= 0) ? s.fee : P.fee;
-const payEligible = s => s.group !== 'profes' && feeOf(s) > 0;
+const payEligible = s => s.group !== 'profes' && feeOf(s) > 0 && !s.trial && !s.frozen;
 function payEntry(month, sid) {
   const k = month + '|' + sid;
   if (P.pending.has(k)) return P.pending.get(k);
@@ -2350,10 +2728,13 @@ function payRender() {
   list.forEach(s => { const e = payEntry(P.month, s.id); if (e && e.on) { paidN++; collected += Number(e.amount) || 0; } else pendAmt += feeOf(s); });
   const pendN = list.length - paidN, expected = collected + pendAmt;
   const pct = expected ? Math.round(collected / expected * 100) : 0;
+  const byM = {};
+  list.forEach(s => { const e = payEntry(P.month, s.id); if (e && e.on) { const k = e.method || 'Otro'; byM[k] = (byM[k] || 0) + (Number(e.amount) || 0); } });
   $('#pSum').innerHTML = '<div class="pay-sum"><div class="pay-big"><span class="lab">Cobrado en ' + esc(monthName(P.month)) + '</span><b>' + money(collected) + '</b><em>de ' + money(expected) + ' · ' + pct + '%</em></div>' +
     '<div class="progress" role="progressbar" aria-label="Avance de cobro" aria-valuenow="' + pct + '" aria-valuemin="0" aria-valuemax="100"><i style="width:' + pct + '%"></i></div>' +
     '<div class="pay-stats"><span><b class="num">' + paidN + '</b>' + (paidN === 1 ? 'pagó' : 'pagaron') + '</span><span><b class="num">' + pendN + '</b>' + (pendN === 1 ? 'pendiente' : 'pendientes') + ' · ' + money(pendAmt) + '</span>' +
-    '<button class="btn small" id="pFee">Cuota ' + money(P.fee) + ' al mes</button></div></div>';
+    '<button class="btn small" id="pFee">Cuota ' + money(P.fee) + ' al mes</button></div>' +
+    (Object.keys(byM).length ? '<div class="hint">Por método: ' + Object.keys(byM).map(k => esc(k) + ' ' + money(byM[k])).join(' · ') + '</div>' : '') + '</div>';
   $('#pFilter').innerHTML = [['pend', 'Pendientes', pendN], ['pag', 'Pagados', paidN], ['todos', 'Todos', list.length]].map(([id, n, c]) =>
     '<button class="chip sm" data-f="' + id + '" aria-pressed="' + (P.filter === id) + '">' + n + '<small>' + c + '</small></button>').join('');
   const q = fold(P.q);
@@ -2369,7 +2750,7 @@ function payRender() {
     const e = payEntry(P.month, s.id), on = !!(e && e.on), f = feeOf(s);
     const sub = on
       ? 'Pagó ' + (e.date ? dayLabel(e.date, { day: 'numeric', month: 'short' }) : '') + ' · ' + (e.method || '') + ' · ' + money(e.amount)
-      : 'Pendiente · ' + money(f) + (f !== P.fee ? ' (cuota especial)' : '');
+      : 'Pendiente · ' + money(f) + (f !== P.fee ? ' (cuota especial)' : '') + dueText(s, P.month);
     const wa = !on ? waLink(s, P.month) : '';
     const acts = on
       ? '<button class="paid" data-pview="' + esc(s.id) + '">' + CHECK_SVG + 'Pagado</button>'
@@ -2426,6 +2807,7 @@ function paidView(sid) {
     '<h2>Pago registrado</h2><p><strong>' + esc(s.name) + '</strong> pagó ' + money(e.amount) + ' de ' + esc(monthName(month)) +
     (e.date ? ' el ' + esc(dayLabel(e.date, { weekday: 'long', day: 'numeric', month: 'long' })) : '') + ' en ' + esc((e.method || '').toLowerCase()) + '.' +
     (e.note ? '<br>Nota: ' + esc(e.note) : '') + '</p>' +
+    (waUrl(s, 'x') ? '<div><a class="btn small" target="_blank" rel="noopener" href="' + esc(waUrl(s, 'Recibo de 99 Jiu-Jitsu México: recibimos ' + money(e.amount) + ' de ' + s.name + ' por la mensualidad de ' + monthName(month) + ' ' + month.slice(0, 4) + (e.date ? ', pagada el ' + dayLabel(e.date, { day: 'numeric', month: 'long' }) : '') + (e.method ? ' (' + e.method.toLowerCase() + ')' : '') + '. ¡Gracias! Oss.')) + '">Enviar recibo por WhatsApp</a></div>' : '') +
     '<div class="sheet-actions"><button class="btn danger" id="pvVoid">Anular pago</button><span class="spacer"></span><button class="btn primary" id="pvOk" autofocus>Listo</button></div>',
     sh => {
       $('#pvOk', sh).addEventListener('click', closeSheet);
@@ -2613,7 +2995,8 @@ document.addEventListener('keydown', e => {
 
 setInterval(() => { tTick(); mTick(); tvRender(); }, 100);
 tBuildUI(); tRender(); mRender();
-show(location.hash.slice(1) || LS.get('view', 'cronometro'));
+show(location.hash.slice(1) || LS.get('view', 'inicio'));
+if (K.on) document.body.classList.add('kiosk');
 setPane(A.pane);
 attInit();
 })();

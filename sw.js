@@ -1,5 +1,5 @@
 /* Check System · service worker: deja abrir la app aunque se caiga el internet un momento. */
-const VERSION = 'check-system-v2';
+const VERSION = 'check-system-v3';
 const SHELL = ['./', 'index.html', 'adapter.js', 'vendor/supabase.js', 'manifest.webmanifest', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
 self.addEventListener('install', e => {
